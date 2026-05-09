@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGlide | Skybound Chronicles Blog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',    /* Electric Blue */
+                        darkbg: '#050505',   /* Deep Black */
+                        lightbg: '#FFFFFF',  
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4 { font-weight: 600 !important; }
+        
+        .skew-shape { transform: skewX(-12deg); }
+        .unskew-shape { transform: skewX(12deg); }
+        
+        /* Custom hover lift for blog cards */
+        .blog-card:hover { transform: translateY(-10px); }
+
+        .wind-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(58, 134, 255, 0.4), transparent);
+            animation: wind 4s linear infinite;
+        }
+        @keyframes wind {
+            0% { left: -200px; opacity: 0; }
+            50% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        .bg-radial-gradient { background: radial-gradient(circle at center, var(--tw-gradient-from), var(--tw-gradient-to)); }
+    </style>
+</head>
+
+<body class="bg-lightbg dark:bg-darkbg text-black dark:text-white transition-colors duration-300 antialiased">
+
+    <div id="navbar"></div>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-black text-center px-4">
+        <!-- Animated Wind Lines -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none z-10">
+            <div class="wind-line" style="top:15%;width:180px;animation-delay:0s;"></div>
+            <div class="wind-line" style="top:35%;width:250px;animation-delay:1.5s;"></div>
+            <div class="wind-line" style="top:65%;width:140px;animation-delay:3s;"></div>
+            <div class="wind-line" style="top:85%;width:220px;animation-delay:0.5s;"></div>
+        </div>
+
+        <!-- Background Image with Dramatic Shading -->
+        <div class="absolute inset-0">
+            <img src="images\Staying Aloft Longer.webp" 
+                 alt="Paraglider over the mountains" class="w-full h-full object-cover opacity-50 scale-105">
+            <div class="absolute inset-0"></div>
+            <div class="absolute inset-0"></div>
+        </div>
+        
+        <!-- Floating Mission Data (Side Element) -->
+        <div class="hidden xl:flex absolute left-12 top-1/2 -translate-y-1/2 flex-col gap-8 z-30 opacity-60 hover:opacity-100 transition-opacity">
+            <div class="border-l border-brand/40 pl-6 py-2">
+                <p class="text-[9px] font-bold text-brand uppercase tracking-[0.3em] mb-1">Altitude</p>
+                <h4 class="text-xl text-white font-semibold">12,400ft</h4>
+            </div>
+            <div class="border-l border-white/20 pl-6 py-2">
+                <p class="text-[9px] font-bold text-gray-500 uppercase tracking-[0.3em] mb-1">Wind Speed</p>
+                <h4 class="text-xl text-white font-semibold">14 kts</h4>
+            </div>
+            <div class="border-l border-white/20 pl-6 py-2">
+                <p class="text-[9px] font-bold text-gray-500 uppercase tracking-[0.3em] mb-1">Frequency</p>
+                <h4 class="text-xl text-white font-semibold">144.5 MHz</h4>
+            </div>
+        </div>
+
+        <div class="container mx-auto relative z-20 flex flex-col items-center">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-[1px] bg-brand/50"></div>
+                    <span class="inline-block px-4 py-1.5 rounded-full border border-brand/40 bg-brand/10 backdrop-blur-md text-brand text-[10px] font-bold uppercase tracking-[0.4em]">
+                        Skybound Chronicles
+                    </span>
+                    <div class="w-12 h-[1px] bg-brand/50"></div>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold text-white uppercase tracking-tighter leading-[0.85] mb-8">
+                    The Sky <br> 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">Has Stories.</span>
+                </h1>
+
+                <p class="text-base md:text-xl text-gray-300 font-normal leading-relaxed max-w-2xl mx-auto mb-12">
+                    Deep dives into thermal dynamics, pilot expedition logs, and technical briefings from the edge of the troposphere.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <a href="#featured" class="rounded-xl px-12 py-5 bg-brand text-white text-xs font-bold uppercase tracking-widest shadow-[0_0_40px_rgba(58,134,255,0.4)] hover:bg-white hover:text-black transition-all duration-300 group">
+                        <span class="flex items-center gap-3">Explore Articles <i class="fas fa-chevron-down group-hover:translate-y-1 transition-transform"></i></span>
+                    </a>
+                    
+                    <!-- Featured Article Teaser (Glass Card) -->
+                    <div class="flex items-center gap-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 pr-10 shadow-2xl hover:bg-white/10 transition-all cursor-pointer">
+                        <div class="w-10 h-10 rounded-xl bg-brand/20 flex items-center justify-center text-brand">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-[8px] font-bold uppercase text-brand tracking-widest leading-none mb-1">Hot Briefing</p>
+                            <p class="text-[10px] font-bold text-white uppercase tracking-tight">Mastering Alpine Thermals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     
+    </section>
+
+    <section class="py-20 md:py-32 bg-white dark:bg-[#050505]">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-end mb-12 md:mb-20 gap-8">
+                <div class="max-w-2xl">
+                    <span class="inline-block px-3 py-1 rounded-full bg-brand/10 text-brand text-[9px] font-bold uppercase tracking-[0.2em] mb-4">AeroGlide Intel</span>
+                    <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tighter mb-6 leading-tight">Latest <span class="text-brand">Briefings.</span></h2>
+                    <p class="text-gray-500 dark:text-gray-400 font-medium leading-relaxed max-w-lg">Expert insights on aerodynamics, high-altitude gear maintenance, and the world's most breathtaking launch sites.</p>
+                </div>
+                
+                <!-- Responsive Tabs -->
+                <div class="flex items-center gap-2 p-1.5 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-100 dark:border-gray-900 overflow-x-auto no-scrollbar whitespace-nowrap" id="briefingTabs">
+                    <button data-category="all" class="briefing-tab px-8 py-2.5 rounded-xl bg-brand text-white text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-brand/20 transition-all active">All Logs</button>
+                    <button data-category="Flight Theory" class="briefing-tab px-8 py-2.5 rounded-xl text-gray-400 hover:text-brand hover:bg-white dark:hover:bg-black transition-all text-[10px] font-bold uppercase tracking-widest">Safety</button>
+                    <button data-category="Destinations" class="briefing-tab px-8 py-2.5 rounded-xl text-gray-400 hover:text-brand hover:bg-white dark:hover:bg-black transition-all text-[10px] font-bold uppercase tracking-widest">Destinations</button>
+                    <button data-category="Safety Protocol" class="briefing-tab px-8 py-2.5 rounded-xl text-gray-400 hover:text-brand hover:bg-white dark:hover:bg-black transition-all text-[10px] font-bold uppercase tracking-widest">Equipment</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
+                
+                <article data-category="Flight Theory" class="blog-card flex flex-col bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10">
+                    <div class="h-72 overflow-hidden relative">
+                        <img src="images\Staying Aloft Longer.webp" 
+                             alt="Thermal Flying" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <span class="absolute top-6 left-6 px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold uppercase tracking-widest rounded-xl">Flight Theory</span>
+                    </div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-8 h-[1px] bg-brand"></span>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">May 12, 2026 • 6 Min</p>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-5 leading-tight group-hover:text-brand transition-colors tracking-tight">Mastering Thermals: Staying Aloft Longer</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-8 flex-1">Understanding the science behind rising warm air columns to extend your paragliding sessions by hours.</p>
+                        <a href="flights.html" class="inline-flex items-center gap-3 text-brand font-bold text-[10px] uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
+                            Explore Log <i class="fas fa-chevron-right text-[8px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article data-category="Destinations" class="blog-card flex flex-col bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10 lg:mt-12">
+                    <div class="h-72 overflow-hidden relative">
+                        <img src="images\img16.avif" 
+                             alt="Swiss Alps" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <span class="absolute top-6 left-6 px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold uppercase tracking-widest rounded-xl">Destinations</span>
+                    </div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-8 h-[1px] bg-brand"></span>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">April 28, 2026 • 8 Min</p>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-5 leading-tight group-hover:text-brand transition-colors tracking-tight">Top 5 Alpine Launch Sites for Summer</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-8 flex-1">Our pilots rank the most breathtaking summits in Switzerland and Austria for your next tandem adventure.</p>
+                        <a href="flights.html" class="inline-flex items-center gap-3 text-brand font-bold text-[10px] uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
+                            Explore Log <i class="fas fa-chevron-right text-[8px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article data-category="Safety Protocol" class="blog-card flex flex-col bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10 lg:mt-24">
+                    <div class="h-72 overflow-hidden relative">
+                        <img src="images\Checklist Every Pilot Needs.webp" 
+                             alt="Paragliding Safety" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <span class="absolute top-6 left-6 px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold uppercase tracking-widest rounded-xl">Safety Protocol</span>
+                    </div>
+                    <div class="p-10 flex-1 flex flex-col">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-8 h-[1px] bg-brand"></span>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">April 15, 2026 • 10 Min</p>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-5 leading-tight group-hover:text-brand transition-colors tracking-tight">The Pre-Flight Checklist Every Pilot Needs</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-8 flex-1">Safety is non-negotiable. We break down the 12-point inspection every AeroGlide pilot performs.</p>
+                        <a href="flights.html" class="inline-flex items-center gap-3 text-brand font-bold text-[10px] uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
+                            Explore Log <i class="fas fa-chevron-right text-[8px]"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section class="py-24 bg-white dark:bg-darkbg">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand/10 rounded text-brand text-[9px] font-bold uppercase tracking-widest mb-6">Expert Roster</div>
+                    <h2 class="text-4xl md:text-6xl font-semibold uppercase tracking-tighter leading-none mb-8">Mastering <br> The <span class="text-brand">Vortex.</span></h2>
+                    <div class="space-y-6">
+                        <p class="text-lg text-gray-600 dark:text-gray-300 italic">"Flight isn't just about the wings; it's about reading the invisible rivers of air."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full border-2 border-brand p-1">
+                                <img src="images\img14.avif" class="w-full h-full rounded-full object-cover">
+                            </div>
+                            <div>
+                                <h5 class="text-sm font-semibold uppercase">Marcus Vane</h5>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Head of Aerodynamics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 order-1 lg:order-2 grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <img src="images\img14.avif" class="w-full h-80 object-cover rounded-[2rem] shadow-xl">
+                        <div class="bg-brand p-8 rounded-[2rem] text-white">
+                            <h4 class="text-3xl font-semibold">12k+</h4>
+                            <p class="text-[10px] font-bold uppercase tracking-widest opacity-80">Miles Logged This Season</p>
+                        </div>
+                    </div>
+                    <div class="pt-12">
+                        <img src="https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?q=80&w=500" class="w-full h-[450px] object-cover rounded-[2rem] shadow-2xl border-4 border-white dark:border-[#111]">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 md:py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+        <!-- Decorative Glows -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-brand/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+            <div class="text-center mb-16 md:mb-24">
+                <span class="inline-block px-3 py-1 rounded-full bg-brand/10 text-brand text-[9px] font-bold uppercase tracking-[0.2em] mb-4">Innovation Timeline</span>
+                <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tighter text-white mb-6">Evolution of <span class="text-brand">Aero-Tech.</span></h2>
+                <p class="text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">From canvas wings to advanced composite aerodynamics. A visual journey through the history of flight innovation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 1980s -->
+                <div class="group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-br from-brand/50 to-transparent rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <div class="relative p-10 bg-[#0a0a0a] rounded-[2.5rem] border border-white/5 h-full flex flex-col hover:border-brand/30 transition-colors duration-500">
+                        <span class="text-5xl font-semibold text-white group-hover:text-brand/20 transition-colors mb-6  leading-none">1980s</span>
+                        <h4 class="text-xl font-semibold text-white mb-4 uppercase tracking-tight">The Pioneer Era</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Standard triangular frames and heavy dacron sails defined the early days of tandem soaring and experimental flight.</p>
+                        <div class="mt-8 pt-8 border-t border-white/5 flex items-center gap-2 text-brand text-[10px] font-bold uppercase tracking-widest">
+                            <i class="fas fa-history"></i> Legacy Build
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2005 -->
+                <div class="group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-br from-white/10 to-transparent rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <div class="relative p-10 bg-[#0a0a0a] rounded-[2.5rem] border border-white/5 h-full flex flex-col hover:border-brand/30 transition-colors duration-500">
+                        <span class="text-5xl font-semibold text-white group-hover:text-brand/20 transition-colors mb-6  leading-none">2005</span>
+                        <h4 class="text-xl font-semibold text-white mb-4 uppercase tracking-tight">The Cell Revolution</h4>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Internal cross-bracing and pressurized air cells allowed modern paragliders to reach unprecedented 10:1 glide ratios.</p>
+                        <div class="mt-8 pt-8 border-t border-white/5 flex items-center gap-2 text-brand text-[10px] font-bold uppercase tracking-widest">
+                            <i class="fas fa-wind"></i> Performance Leap
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2026 -->
+                <div class="group relative md:col-span-2 lg:col-span-1">
+                    <div class="absolute -inset-0.5 bg-brand rounded-[2.5rem] blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                    <div class="relative p-10 bg-brand rounded-[2.5rem] h-full flex flex-col text-white">
+                        <span class="text-5xl font-semibold text-white mb-6  leading-none">2026</span>
+                        <h4 class="text-xl font-semibold mb-4 uppercase tracking-tight text-black">AeroGlide Tech</h4>
+                        <p class="text-sm leading-relaxed font-semibold opacity-90">Carbon fiber reinforced leading edges and ultra-thin line profiles engineered for maximum lift-to-drag and safety.</p>
+                        <div class="mt-8 pt-8 border-t border-black/10 flex items-center gap-2 text-black text-[10px] font-bold uppercase tracking-widest">
+                            <i class="fas fa-bolt"></i> State of the Art
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-gray-50 dark:bg-[#0a0a0a] relative overflow-hidden">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+            <h2 class="text-2xl font-semibold uppercase tracking-tight mb-12 border-l-4 border-brand pl-6">Technical <span class="text-brand">Specifications</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-gray-200 dark:border-white/10 rounded-3xl overflow-hidden shadow-sm">
+                <div class="p-10 border-b md:border-b-0 md:border-r border-gray-200 dark:border-white/10 hover:bg-white dark:hover:bg-darkbg transition-colors group">
+                    <h4 class="text-xs font-bold text-brand uppercase tracking-widest mb-6">Standard Tandem</h4>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between text-sm"><span class="text-gray-500">Glide Ratio</span> <span class="font-semibold">9.2:1</span></li>
+                        <li class="flex justify-between text-sm"><span class="text-gray-500">Max Speed</span> <span class="font-semibold">45 km/h</span></li>
+                        <li class="flex justify-between text-sm"><span class="text-gray-500">Comfort Level</span> <span class="font-semibold text-green-500">High</span></li>
+                    </ul>
+                </div>
+                <div class="p-10 bg-brand text-white md:border-r border-brand">
+                    <h4 class="text-xs font-bold text-black uppercase tracking-widest mb-6">XTreme Acro Wing</h4>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between text-sm"><span class="opacity-70">G-Force Tolerance</span> <span class="font-semibold">6.5G</span></li>
+                        <li class="flex justify-between text-sm"><span class="opacity-70">Descent Rate</span> <span class="font-semibold">18 m/s</span></li>
+                        <li class="flex justify-between text-sm"><span class="opacity-70">Agility Rating</span> <span class="font-semibold">Elite</span></li>
+                    </ul>
+                </div>
+                <div class="p-10 hover:bg-white dark:hover:bg-darkbg transition-colors">
+                    <h4 class="text-xs font-bold text-brand uppercase tracking-widest mb-6">Hang Glider Alpha</h4>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between text-sm"><span class="text-gray-500">Glide Ratio</span> <span class="font-semibold">15:1</span></li>
+                        <li class="flex justify-between text-sm"><span class="text-gray-500">Max Speed</span> <span class="font-semibold">110 km/h</span></li>
+                        <li class="flex justify-between text-sm"><span class="text-gray-500">Wing Flex</span> <span class="font-semibold">Rigid</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white dark:bg-darkbg overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand/5 rounded-full blur-[100px] -mr-48 -mt-48"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand/5 rounded-full blur-[100px] -ml-48 -mb-48"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="w-20 h-20 mx-auto bg-brand/10 flex items-center justify-center text-brand text-3xl rounded-3xl border border-brand/20 mb-8 rotate-12">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-semibold uppercase tracking-tighter mb-6">Stay in the <span class="text-brand">Launch Window</span></h2>
+                <p class="text-gray-500 font-normal text-lg mb-12">Receive weekly weather alerts, new flight routes, and exclusive early-bird booking links directly in your cockpit.</p>
+                
+                <form class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+                    <input type="email" placeholder="Pilot/Explorer Email" 
+                           class="flex-1 px-8 py-5 bg-gray-50 dark:bg-[#111] border border-gray-200 dark:border-gray-800 rounded-2xl outline-none focus:border-brand transition-all font-medium">
+                    <button class="rounded-xl px-10 py-5 bg-brand text-white text-xs font-bold uppercase tracking-widest shadow-lg shadow-brand/30 hover:bg-black transition-all">
+                        <span class=" block">Sync Up</span>
+                    </button>
+                </form>
+                <p class="mt-6 text-[10px] font-bold text-gray-400 uppercase tracking-widest">No spam. Only high-altitude insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+        // BRIEFING TAB FILTERING
+        const briefingTabs = document.querySelectorAll('.briefing-tab');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        briefingTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update Tab Styles
+                briefingTabs.forEach(t => {
+                    t.classList.remove('bg-brand', 'text-white', 'shadow-lg', 'shadow-brand/20', 'active');
+                    t.classList.add('text-gray-400');
+                });
+                tab.classList.add('bg-brand', 'text-white', 'shadow-lg', 'shadow-brand/20', 'active');
+                tab.classList.remove('text-gray-400');
+
+                // Filter Cards
+                const category = tab.getAttribute('data-category');
+                blogCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGlide | About Us</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',
+                        darkbg: '#050505',
+                        lightbg: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; }
+
+        /* ─── GRAIN OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ─── SKEW SHAPES ─── */
+        .skew-shape  { transform: skewX(-12deg); }
+        .unskew-shape{ transform: skewX(12deg); }
+
+        /* ─── STICKY NAV ─── */
+        #site-nav { transition: background .3s ease, box-shadow .3s ease; }
+        #site-nav.scrolled {
+            background: rgba(255,255,255,.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,.08);
+        }
+        .dark #site-nav.scrolled { background: rgba(5,5,5,.95); }
+
+        /* ─── MOBILE MENU ─── */
+        #mob-menu { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+        #mob-menu.open { max-height: 420px; }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal        { opacity:0; transform:translateY(40px);  transition:opacity .7s ease,transform .7s ease; }
+        .reveal-left   { opacity:0; transform:translateX(-50px); transition:opacity .7s ease,transform .7s ease; }
+        .reveal-right  { opacity:0; transform:translateX(50px);  transition:opacity .7s ease,transform .7s ease; }
+        .reveal.visible,.reveal-left.visible,.reveal-right.visible { opacity:1; transform:none; }
+
+        /* ─── GLOW BUTTON ─── */
+        .glow-btn:hover { box-shadow:0 0 30px rgba(58,134,255,.6),0 0 60px rgba(58,134,255,.2); }
+
+        /* ─── FLOATING ANIM ─── */
+        @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+        .float-anim { animation:floatY 4s ease-in-out infinite; }
+
+        /* ─── WIND LINES ─── */
+        @keyframes windLine {
+            0%   { transform:translateX(-120px); opacity:0; }
+            15%  { opacity:1; }
+            85%  { opacity:1; }
+            100% { transform:translateX(110vw); opacity:0; }
+        }
+        .wind-line { position:absolute; height:1px; background:linear-gradient(to right,transparent,rgba(58,134,255,.4),transparent); animation:windLine 3.5s linear infinite; }
+
+        /* ─── PING RINGS ─── */
+        @keyframes pingRing { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(2.5);opacity:0} }
+        .ping-ring { animation:pingRing 2s cubic-bezier(0,0,.2,1) infinite; }
+
+
+        /* ─── MARQUEE ─── */
+        @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+        .marquee-track { animation:marquee 22s linear infinite; }
+        .marquee-wrap:hover .marquee-track { animation-play-state:paused; }
+
+        /* ─── DIAGONAL SECTIONS ─── */
+        .diag-top    { clip-path:polygon(0 6%,100% 0,100% 100%,0 100%); }
+        .diag-bottom { clip-path:polygon(0 0,100% 0,100% 94%,0 100%); }
+
+        /* ─── IMAGE HOVER ─── */
+        .img-wrap { position:relative; overflow:hidden; }
+        .img-wrap img { transition:transform .6s cubic-bezier(.25,.46,.45,.94); }
+        .img-wrap:hover img { transform:scale(1.07); }
+        .img-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%); opacity:0; transition:opacity .4s; }
+        .img-wrap:hover .img-overlay { opacity:1; }
+
+        /* ─── TIMELINE VERTICAL ─── */
+        .tl-line {
+            position:absolute;
+            left:50%;
+            transform:translateX(-50%);
+            width:2px;
+            top:0; bottom:0;
+            background:linear-gradient(to bottom,#3A86FF,rgba(58,134,255,.05));
+        }
+        @media(max-width:1023px){ .tl-line{ left:24px; } }
+
+        /* ─── COUNTER ─── */
+        @keyframes countUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+        .stat-item { animation:countUp .6s ease forwards; }
+
+        /* ─── CARD 3D ─── */
+        .card-3d { transition:transform .4s ease,box-shadow .4s ease; }
+        .card-3d:hover { transform:translateY(-8px) rotateX(3deg); }
+
+        /* ─── PROGRESS ─── */
+        .prog-bar { transition:width 1.5s ease; }
+
+        /* ─── TICKER ─── */
+        .ticker-val {
+            display:inline-block;
+            font-variant-numeric:tabular-nums;
+        }
+
+        /* ─── TEAM CARD HOVER ─── */
+        .pilot-card .pilot-overlay {
+            position:absolute; inset:0;
+            background:linear-gradient(to top,rgba(0,0,0,.9) 0%,transparent 60%);
+            opacity:1; transition:opacity .4s ease;
+        }
+        .pilot-card .pilot-info { transition:transform .4s ease; transform:translateY(0); }
+
+        /* ─── QUOTE MARK DECORATION ─── */
+        .quote-mark {
+            font-family:'Georgia',serif;
+            font-size:8rem;
+            line-height:1;
+            color:rgba(58,134,255,.12);
+            position:absolute;
+            top:-20px; left:0;
+            user-select:none;
+        }
+
+        /* ─── VALUES ICON PULSE ─── */
+        @keyframes iconPulse {
+            0%,100%{box-shadow:0 0 0 0 rgba(58,134,255,.3)}
+            50%{box-shadow:0 0 0 12px rgba(58,134,255,0)}
+        }
+        .icon-pulse:hover { animation:iconPulse .9s ease infinite; }
+
+        /* ─── SCROLLING TICKER ─── */
+        @keyframes tickerScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+        .ticker-track { animation:tickerScroll 18s linear infinite; }
+        .ticker-wrap:hover .ticker-track { animation-play-state:paused; }
+    </style>
+</head>
+
+<body class="bg-lightbg dark:bg-darkbg text-black dark:text-white transition-colors duration-300 antialiased selection:bg-brand selection:text-white">
+
+
+<section class="relative min-h-screen flex items-end pb-0 overflow-hidden bg-black">
+
+    <!-- Animated Wind Lines -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-10">
+        <div class="wind-line" style="top:25%;width:90px;animation-delay:0s;"></div>
+        <div class="wind-line" style="top:48%;width:140px;animation-delay:1.4s;"></div>
+        <div class="wind-line" style="top:72%;width:65px;animation-delay:2.8s;"></div>
+    </div>
+
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="images\bg2.avif"
+             alt="Mountain aerial view" class="w-full h-full object-cover ">
+        <div class="absolute inset-0 "></div>
+        <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+
+   
+
+    <!-- Hero Content -->
+    <div class="relative z-20 container mx-auto px-6 md:px-16 lg:px-24 pb-32 pt-44">
+
+        <!-- Breadcrumb -->
+        <div class="flex items-center gap-3 mb-10">
+            <div class="w-8 h-[2px] bg-brand"></div>
+            <span class="text-[10px] font-semibold uppercase tracking-[.28em] text-brand">About AeroGlide</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+
+            <!-- Left: Giant Headline -->
+            <div class="lg:col-span-7">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold uppercase leading-[0.92] tracking-tighter text-white mb-0">
+                    Born From<br>
+                    <span class="relative inline-block">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand via-cyan-400 to-brand bg-[length:200%] animate-[gradientShift_4s_ease_infinite]">
+                            Passion
+                        </span>
+                    </span><br>
+                    <span class="font-light italic text-white/60 text-5xl sm:text-6xl md:text-7xl">For The Sky.</span>
+                </h1>
+            </div>
+
+            <!-- Right: Intro Text -->
+            <div class="lg:col-span-5 lg:pb-3">
+                <p class="text-sm md:text-base text-white/60 font-normal leading-relaxed mb-8 max-w-sm">
+                    Since 2009, AeroGlide has been turning ordinary days into extraordinary sky stories. We are more than a flight company — we are a community of sky lovers, daring dreamers, and safety-first professionals.
+                </p>
+                <a href="#story" class="rounded-xl inline-flex items-center gap-3 px-8 py-4 bg-brand text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 glow-btn shadow-[0_0_25px_rgba(58,134,255,.4)]">
+                    <span class=" flex items-center gap-3">Discover Our Story <i class="fas fa-arrow-down"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Stat Strip -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-0 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
+            <div class="stat-item p-6 bg-white/5 border-r border-white/10 text-center hover:bg-brand/20 transition-colors duration-300 cursor-default">
+                <div class="text-3xl md:text-4xl font-semibold text-white mb-1">2009<span class="text-brand text-2xl"></span></div>
+                <div class="text-[9px] uppercase tracking-[.2em] text-white/50 font-medium">Founded</div>
+            </div>
+            <div class="stat-item p-6 bg-white/5 border-r border-white/10 text-center hover:bg-brand/20 transition-colors duration-300 cursor-default" style="animation-delay:.1s">
+                <div class="text-3xl md:text-4xl font-semibold text-white mb-1">18<span class="text-brand">+</span></div>
+                <div class="text-[9px] uppercase tracking-[.2em] text-white/50 font-medium">Expert Pilots</div>
+            </div>
+            <div class="stat-item p-6 bg-white/5 border-r border-white/10 text-center hover:bg-brand/20 transition-colors duration-300 cursor-default" style="animation-delay:.2s">
+                <div class="text-3xl md:text-4xl font-semibold text-white mb-1">3<span class="text-brand"></span></div>
+                <div class="text-[9px] uppercase tracking-[.2em] text-white/50 font-medium">Alpine Locations</div>
+            </div>
+            <div class="stat-item p-6 bg-white/5 text-center hover:bg-brand/20 transition-colors duration-300 cursor-default" style="animation-delay:.3s">
+                <div class="text-3xl md:text-4xl font-semibold text-white mb-1">12K<span class="text-brand">+</span></div>
+                <div class="text-[9px] uppercase tracking-[.2em] text-white/50 font-medium">Sky Stories</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- ═══════════════════════════════════════════════
+     OUR STORY — DIAGONAL SPLIT
+══════════════════════════════════════════════════ -->
+<section id="story" class="py-32 bg-lightbg dark:bg-darkbg overflow-hidden">
+    <div class="container mx-auto px-6 md:px-16 lg:px-24">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-center">
+
+            <!-- Left: Image Stack -->
+            <div class="reveal-left relative">
+                <!-- Main Image -->
+                <div class="img-wrap rounded-3xl overflow-hidden h-[420px] md:h-[520px] border border-gray-100 dark:border-gray-800 shadow-2xl">
+                    <img src="images\img17.avif"
+                         alt="Paragliding over valley" class="w-full h-full object-cover">
+                    <div class="img-overlay"></div>
+                </div>
+
+                <!-- Overlap Card -->
+                <div class="float-anim absolute -bottom-8 -right-4 md:-right-10 z-20 bg-white dark:bg-[#111] rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,.12)] border border-gray-100 dark:border-gray-800 min-w-[200px]">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center text-brand text-lg">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-semibold uppercase tracking-wider text-black dark:text-white">#1 Rated</div>
+                            <div class="text-[9px] text-gray-400 uppercase tracking-widest">Alpine Tandem Operator</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-0.5 text-brand text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-[10px] text-gray-500 mt-2 font-normal">TripAdvisor · Google · Yelp</p>
+                </div>
+
+                <!-- Corner Brackets -->
+                <div class="absolute -top-4 -left-4 w-12 h-12 border-t-4 border-l-4 border-brand rounded-tl-lg z-10 pointer-events-none"></div>
+            </div>
+
+            <!-- Right: Story Text -->
+            <div class="reveal-right">
+                <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-5">Our Origin</span>
+                <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tighter text-black dark:text-white leading-[0.95] mb-8">
+                    A Dream That<br>Took <span class="text-brand">Flight</span><br>In 2009.
+                </h2>
+
+                <div class="space-y-5 text-sm text-gray-600 dark:text-gray-400 font-normal leading-relaxed">
+                    <p>
+                        AeroGlide began in a tiny garage in Interlaken, Switzerland, with a single wing, two pilot friends, and an unshakeable belief: everyone deserves to feel free in the sky.
+                    </p>
+                    <p>
+                        Founders <strong class="text-black dark:text-white font-semibold">Marco Bauer</strong> and <strong class="text-black dark:text-white font-semibold">Lena Richter</strong> — both world-competition paragliding veterans — turned their passion into a meticulous operation that valued safety above everything. Their first season: 47 tandem flights. Their tenth season: over 2,000.
+                    </p>
+                    <p>
+                        Today, AeroGlide operates across three Alpine nations, offers both paragliding and hang gliding tandem experiences, and has become the most awarded tandem operation in the region. But the heart of the company remains the same — a single moment of pure, unbridled freedom for every passenger who steps off the mountain with us.
+                    </p>
+                </div>
+
+                <!-- Signature -->
+                <div class="mt-10 flex items-center gap-5 pt-8 border-t border-gray-100 dark:border-gray-800">
+                    <div>
+                        <div class="text-2xl italic font-semibold text-black dark:text-white tracking-tight" style="font-family:'Georgia',serif">Marco & Lena</div>
+                        <div class="text-[10px] text-brand uppercase tracking-widest font-bold mt-1">Co-Founders, AeroGlide</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- ═══════════════════════════════════════════════
+     MILESTONES — VERTICAL TIMELINE
+══════════════════════════════════════════════════ -->
+<section id="milestones" class="py-32 bg-gray-50 dark:bg-[#0c0c0c] overflow-hidden">
+    <div class="container mx-auto px-6 md:px-16 lg:px-24">
+
+        <div class="reveal text-center mb-20">
+            <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-4">Our Journey</span>
+            <h2 class="text-4xl md:text-6xl font-semibold uppercase tracking-tighter text-black dark:text-white leading-[0.95]">
+                Fifteen Years<br>Of <span class="text-brand">Milestones</span>
+            </h2>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative max-w-4xl mx-auto">
+            <!-- Vertical Line -->
+            <div class="tl-line hidden lg:block"></div>
+
+            <!-- Items -->
+            <div class="space-y-0">
+
+                <!-- 2009 -->
+                <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
+                    <div class="lg:pr-16 lg:text-right pb-12 lg:pb-16 pl-12 lg:pl-0">
+                        <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-brand text-white text-[10px] font-semibold uppercase tracking-widest">
+                            <span class="block">2009</span>
+                        </div>
+                        <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-3">The First Flight</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">Marco and Lena launch AeroGlide from a rented hangar in Interlaken. First season ends with 47 tandem flights and a 5-star average.</p>
+                    </div>
+                    <!-- Center Dot -->
+                    <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-brand border-4 border-white dark:border-[#0c0c0c] shadow-[0_0_15px_rgba(58,134,255,.5)] z-10 top-1/2 -translate-y-1/2 items-center justify-center"></div>
+                    <!-- Mobile Dot -->
+                    <div class="lg:hidden absolute left-0 top-2 w-5 h-5 rounded-full bg-brand border-4 border-gray-50 dark:border-[#0c0c0c] shadow-[0_0_12px_rgba(58,134,255,.5)] z-10"></div>
+                    <div class="hidden lg:block lg:pl-16 pb-12 lg:pb-16"></div>
+                </div>
+
+                <!-- 2012 -->
+                <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.1s">
+                    <div class="hidden lg:block lg:pr-16 pb-16"></div>
+                    <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0c0c0c] border-4 border-brand shadow-[0_0_15px_rgba(58,134,255,.3)] z-10 top-1/2 -translate-y-1/2 items-center justify-center"></div>
+                    <div class="lg:hidden absolute left-0 top-2 w-5 h-5 rounded-full bg-white dark:bg-[#0c0c0c] border-4 border-brand z-10"></div>
+                    <div class="lg:pl-16 pb-12 lg:pb-16 pl-12 lg:pl-16">
+                        <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-black dark:bg-white text-white dark:text-black text-[10px] font-semibold uppercase tracking-widest">
+                            <span class="block">2012</span>
+                        </div>
+                        <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-3">Hang Gliding Added</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">We introduced tandem hang gliding — becoming one of only three operators in Europe offering both disciplines under one certified brand.</p>
+                    </div>
+                </div>
+
+                <!-- 2015 -->
+                <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.15s">
+                    <div class="lg:pr-16 lg:text-right pb-12 lg:pb-16 pl-12 lg:pl-0">
+                        <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-brand text-white text-[10px] font-semibold uppercase tracking-widest">
+                            <span class="block">2015</span>
+                        </div>
+                        <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-3">Dolomites Location Opens</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">Our second launch site opens in northern Italy's breathtaking Dolomite region, tripling our seasonal capacity.</p>
+                    </div>
+                    <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-brand border-4 border-white dark:border-[#0c0c0c] shadow-[0_0_15px_rgba(58,134,255,.5)] z-10 top-1/2 -translate-y-1/2 items-center justify-center"></div>
+                    <div class="lg:hidden absolute left-0 top-2 w-5 h-5 rounded-full bg-brand border-4 border-gray-50 dark:border-[#0c0c0c] z-10"></div>
+                    <div class="hidden lg:block lg:pl-16 pb-16"></div>
+                </div>
+
+                <!-- 2018 -->
+                <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.2s">
+                    <div class="hidden lg:block lg:pr-16 pb-16"></div>
+                    <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0c0c0c] border-4 border-brand shadow-[0_0_15px_rgba(58,134,255,.3)] z-10 top-1/2 -translate-y-1/2 items-center justify-center"></div>
+                    <div class="lg:hidden absolute left-0 top-2 w-5 h-5 rounded-full bg-white dark:bg-[#0c0c0c] border-4 border-brand z-10"></div>
+                    <div class="lg:pl-16 pb-12 lg:pb-16 pl-12 lg:pl-16">
+                        <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-black dark:bg-white text-white dark:text-black text-[10px] font-semibold uppercase tracking-widest">
+                            <span class="block">2018</span>
+                        </div>
+                        <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-3">10,000 Flights Milestone</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">We celebrated our ten-thousandth tandem flight — still with a perfect safety record. Champagne at 3,000 metres.</p>
+                    </div>
+                </div>
+
+                <!-- 2021 -->
+                <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.25s">
+                    <div class="lg:pr-16 lg:text-right pb-12 lg:pb-16 pl-12 lg:pl-0">
+                        <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-brand text-white text-[10px] font-semibold uppercase tracking-widest">
+                            <span class="block">2021</span>
+                        </div>
+                        <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-3">Pyrenees Base Launched</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">Our third and most dramatic location opens straddling the French-Spanish border — 2,800m of pure vertical freedom.</p>
+                    </div>
+                    <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-brand border-4 border-white dark:border-[#0c0c0c] shadow-[0_0_15px_rgba(58,134,255,.5)] z-10 top-1/2 -translate-y-1/2 items-center justify-center"></div>
+                    <div class="lg:hidden absolute left-0 top-2 w-5 h-5 rounded-full bg-brand border-4 border-gray-50 dark:border-[#0c0c0c] z-10"></div>
+                    <div class="hidden lg:block lg:pl-16 pb-16"></div>
+                </div>
+
+                <!-- 2024 -->
+                <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.3s">
+                    <div class="hidden lg:block lg:pr-16 pb-4"></div>
+                    <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-brand border-4 border-white dark:border-[#0c0c0c] shadow-[0_0_25px_rgba(58,134,255,.8)] z-10 top-1/2 -translate-y-1/2 items-center justify-center">
+                        <i class="fas fa-star text-white text-[10px]"></i>
+                    </div>
+                    <div class="lg:hidden absolute left-0 top-2 w-6 h-6 rounded-full bg-brand border-4 border-gray-50 dark:border-[#0c0c0c] z-10"></div>
+                    <div class="lg:pl-16 pb-4 pl-12 lg:pl-16">
+                        <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-brand text-white text-[10px] font-semibold uppercase tracking-widest">
+                            <span class="block">Today · 2025</span>
+                        </div>
+                        <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-3">The Sky Is The Limit</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">12,000+ flights later, we're still growing — new pilots joining, new experiences launching, and the same founding promise: unforgettable, safe, extraordinary flight for everyone.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CORE VALUES — HEXAGONAL GRID FEEL
+══════════════════════════════════════════════════ -->
+<section id="values" class="py-32 bg-lightbg dark:bg-darkbg overflow-hidden">
+    <div class="container mx-auto px-6 md:px-16 lg:px-24">
+
+        <div class="reveal text-center mb-20">
+            <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-4">What Drives Us</span>
+            <h2 class="text-4xl md:text-6xl font-semibold uppercase tracking-tighter text-black dark:text-white leading-[.95]">
+                Our Core <span class="text-brand">Values</span>
+            </h2>
+        </div>
+
+        <!-- Values in an asymmetric layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Safety -->
+            <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2">
+                <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-4">Safety First.<br>Always.</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">No exception, no compromise. Every flight, every pilot, every piece of gear is held to the highest standard. Our 15-year safety record is proof, not promise.</p>
+                <div class="mt-8 flex items-center gap-2 text-brand text-xs font-semibold uppercase tracking-widest">
+                    <span class="w-5 h-[2px] bg-brand inline-block"></span> Zero incidents since 2009
+                </div>
+            </div>
+
+            <!-- Passion — Featured Centre -->
+            <div class="reveal group bg-brand rounded-3xl p-10 shadow-[0_20px_50px_rgba(58,134,255,.25)] hover:shadow-[0_30px_70px_rgba(58,134,255,.45)] transition-all duration-400 hover:-translate-y-3 lg:-translate-y-8" style="animation-delay:.1s">
+                <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-white text-2xl mb-8">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="text-xl font-semibold uppercase tracking-tight text-white mb-4">Passion In<br>Every Flight.</h3>
+                <p class="text-xs text-white/75 font-normal leading-relaxed">We don't clock in and clock out. We live for this. Every morning we hike to a launch site, we feel the same electric anticipation we felt on day one.</p>
+                <div class="mt-8 flex items-center gap-2 text-white/70 text-xs font-semibold uppercase tracking-widest">
+                    <span class="w-5 h-[2px] bg-white/40 inline-block"></span> Born from love of flight
+                </div>
+            </div>
+
+            <!-- Excellence -->
+            <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2" style="animation-delay:.2s">
+                <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-4">Excellence In<br>Every Detail.</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">From the way we fold a wing to the quality of our 4K footage — we obsess over every detail so your experience is flawless from start to finish.</p>
+                <div class="mt-8 flex items-center gap-2 text-brand text-xs font-semibold uppercase tracking-widest">
+                    <span class="w-5 h-[2px] bg-brand inline-block"></span> 4.9★ across 3,800+ reviews
+                </div>
+            </div>
+
+            <!-- Community -->
+            <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2 md:col-span-1" style="animation-delay:.1s">
+                <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-4">Community<br> Commerce.</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">We sponsor local clubs, mentor aspiring pilots, and give back 2% of every booking to alpine conservation projects. The mountains give us everything — we protect them.</p>
+                <div class="mt-8 flex items-center gap-2 text-brand text-xs font-semibold uppercase tracking-widest">
+                    <span class="w-5 h-[2px] bg-brand inline-block"></span> 2% to conservation
+                </div>
+            </div>
+
+            <!-- Transparency -->
+            <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2" style="animation-delay:.2s">
+                <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-4">Radical<br>Transparency.</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">No hidden fees, no greenwashing, no fine print. We publish our safety logs, certifications, and gear inspection reports publicly on our website — always.</p>
+                <div class="mt-8 flex items-center gap-2 text-brand text-xs font-semibold uppercase tracking-widest">
+                    <span class="w-5 h-[2px] bg-brand inline-block"></span> Open inspection records
+                </div>
+            </div>
+
+            <!-- Freedom -->
+            <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2" style="animation-delay:.3s">
+                <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-wind"></i>
+                </div>
+                <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-4">Freedom For<br>Everyone.</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">Age 8 or 80, nervous first-timer or adrenaline junkie — the sky belongs to everyone. We tailor every single flight to the individual, not the itinerary.</p>
+                <div class="mt-8 flex items-center gap-2 text-brand text-xs font-semibold uppercase tracking-widest">
+                    <span class="w-5 h-[2px] bg-brand inline-block"></span> Tailored to every guest
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     MEET THE PILOTS — HOVER REVEAL CARDS
+══════════════════════════════════════════════════ -->
+<section id="pilots" class="py-32 bg-[#080808] overflow-hidden">
+
+    <div class="container mx-auto px-6 md:px-16 lg:px-24">
+
+        <div class="reveal flex flex-col items-center text-center gap-8 mb-20">
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-4">The Team</span>
+                <h2 class="text-4xl md:text-6xl font-semibold uppercase tracking-tighter text-white leading-[.95]">
+                    Meet The<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">Pilots</span>
+                </h2>
+            </div>
+           
+        </div>
+
+        <!-- Pilot Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- Pilot 1 -->
+            <div class="reveal pilot-card group relative rounded-2xl overflow-hidden h-96 cursor-pointer border border-white/5 img-wrap">
+                <img src="images\pro1.avif"
+                     alt="Marco Bauer" class="w-full h-full object-cover object-top">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="pilot-overlay"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6">
+                    <div class="pilot-info">
+                        <div class="text-[9px] text-brand uppercase tracking-widest font-bold mb-1">Co-Founder · Chief Pilot</div>
+                        <h4 class="text-lg font-semibold uppercase text-white tracking-tight">Marco Bauer</h4>
+                        <p class="text-xs text-white/70 transition-colors duration-400 mt-2 font-normal leading-relaxed">15yr tandem · Ex-World Cup paragliding · 4,200+ hours</p>
+                        <div class="flex gap-3 mt-3">
+                            <span class="text-[9px] font-bold bg-brand/20 border border-brand/30 text-brand px-2 py-1 rounded-full uppercase tracking-wider">Paragliding</span>
+                            <span class="text-[9px] font-bold bg-white/10 border border-white/20 text-white px-2 py-1 rounded-full uppercase tracking-wider">Hang Gliding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pilot 2 -->
+            <div class="reveal pilot-card group relative rounded-2xl overflow-hidden h-96 cursor-pointer border border-white/5 img-wrap lg:mt-10" style="animation-delay:.1s">
+                <img src="images\pro2.avif"
+                     alt="Lena Richter" class="w-full h-full object-cover object-top">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="pilot-overlay"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6">
+                    <div class="pilot-info">
+                        <div class="text-[9px] text-brand uppercase tracking-widest font-bold mb-1">Co-Founder · Head of Safety</div>
+                        <h4 class="text-lg font-semibold uppercase text-white tracking-tight">Lena Richter</h4>
+                        <p class="text-xs text-white/70 transition-colors duration-400 mt-2 font-normal leading-relaxed">14yr tandem · CIVL Judge · Safety protocol author</p>
+                        <div class="flex gap-3 mt-3">
+                            <span class="text-[9px] font-bold bg-brand/20 border border-brand/30 text-brand px-2 py-1 rounded-full uppercase tracking-wider">Paragliding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pilot 3 -->
+            <div class="reveal pilot-card group relative rounded-2xl overflow-hidden h-96 cursor-pointer border border-white/5 img-wrap" style="animation-delay:.2s">
+                <img src="images\pro3.avif"
+                     alt="Stefan Kraus" class="w-full h-full object-cover object-top">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="pilot-overlay"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6">
+                    <div class="pilot-info">
+                        <div class="text-[9px] text-brand uppercase tracking-widest font-bold mb-1">Senior Pilot · Acrobatics Lead</div>
+                        <h4 class="text-lg font-semibold uppercase text-white tracking-tight">Stefan Kraus</h4>
+                        <p class="text-xs text-white/70 transition-colors duration-400 mt-2 font-normal leading-relaxed">12yr tandem · Acrobatic specialist · Dolomites base lead</p>
+                        <div class="flex gap-3 mt-3">
+                            <span class="text-[9px] font-bold bg-brand/20 border border-brand/30 text-brand px-2 py-1 rounded-full uppercase tracking-wider">Acrobatic</span>
+                            <span class="text-[9px] font-bold bg-white/10 border border-white/20 text-white px-2 py-1 rounded-full uppercase tracking-wider">Hang Gliding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pilot 4 -->
+            <div class="reveal pilot-card group relative rounded-2xl overflow-hidden h-96 cursor-pointer border border-white/5 img-wrap lg:mt-10" style="animation-delay:.3s">
+                <img src="images\pro4.avif"
+                     alt="Camille Dupont" class="w-full h-full object-cover object-top">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="pilot-overlay"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6">
+                    <div class="pilot-info">
+                        <div class="text-[9px] text-brand uppercase tracking-widest font-bold mb-1">Senior Pilot · Pyrenees Base</div>
+                        <h4 class="text-lg font-semibold uppercase text-white tracking-tight">Camille Dupont</h4>
+                        <p class="text-xs text-white/70 transition-colors duration-400 mt-2 font-normal leading-relaxed">10yr tandem · Pyrenees base director · Multilingual pilot</p>
+                        <div class="flex gap-3 mt-3">
+                            <span class="text-[9px] font-bold bg-brand/20 border border-brand/30 text-brand px-2 py-1 rounded-full uppercase tracking-wider">Paragliding</span>
+                            <span class="text-[9px] font-bold bg-white/10 border border-white/20 text-white px-2 py-1 rounded-full uppercase tracking-wider">Hang Gliding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Pilot CTA -->
+        <div class="reveal mt-14 text-center">
+            <a href="blog.html" class="rounded-full inline-block px-10 py-4 border border-white/20 text-white text-xs font-semibold uppercase tracking-widest hover:bg-brand hover:border-brand transition-all duration-300">
+                <span class=" flex items-center gap-3">Meet The Full Team <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="py-24 bg-lightbg dark:bg-darkbg border-t border-gray-100 dark:border-gray-900 overflow-hidden">
+    <div class="container mx-auto px-6 md:px-16 lg:px-24 mb-12">
+        <div class="reveal text-center">
+            <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-3">Trusted & Certified</span>
+            <h3 class="text-2xl md:text-3xl font-semibold uppercase tracking-tighter text-black dark:text-white">Our Credentials</h3>
+        </div>
+    </div>
+
+    <!-- Scrolling Cert Badges -->
+    <div class="overflow-hidden ticker-wrap py-6 border-t border-b border-gray-100 dark:border-gray-900 bg-gray-50 dark:bg-[#0c0c0c]">
+        <div class="ticker-track flex items-center gap-0 whitespace-nowrap" id="ticker-track" style="width:max-content">
+            <div class="inline-flex items-center gap-4 px-12">
+                <i class="fas fa-certificate text-brand text-xl"></i>
+                <span class="text-sm font-semibold uppercase tracking-widest text-black dark:text-white">CIVL Certified</span>
+            </div>
+            <div class="inline-flex items-center gap-4 px-12 border-l border-gray-200 dark:border-gray-800">
+                <i class="fas fa-shield-alt text-brand text-xl"></i>
+                <span class="text-sm font-semibold uppercase tracking-widest text-black dark:text-white">USHPA Member</span>
+            </div>
+            <div class="inline-flex items-center gap-4 px-12 border-l border-gray-200 dark:border-gray-800">
+                <i class="fas fa-award text-brand text-xl"></i>
+                <span class="text-sm font-semibold uppercase tracking-widest text-black dark:text-white">Swiss Aviation Authority</span>
+            </div>
+            <div class="inline-flex items-center gap-4 px-12 border-l border-gray-200 dark:border-gray-800">
+                <i class="fas fa-star text-brand text-xl"></i>
+                <span class="text-sm font-semibold uppercase tracking-widest text-black dark:text-white">TripAdvisor Excellence 2024</span>
+            </div>
+            <div class="inline-flex items-center gap-4 px-12 border-l border-gray-200 dark:border-gray-800">
+                <i class="fas fa-lock text-brand text-xl"></i>
+                <span class="text-sm font-semibold uppercase tracking-widest text-black dark:text-white">Fully Insured · CHF 5M</span>
+            </div>
+            <div class="inline-flex items-center gap-4 px-12 border-l border-gray-200 dark:border-gray-800">
+                <i class="fas fa-leaf text-brand text-xl"></i>
+                <span class="text-sm font-semibold uppercase tracking-widest text-black dark:text-white">Alpine Conservation Partner</span>
+            </div>
+            <div class="inline-flex items-center gap-4 px-12 border-l border-gray-200 dark:border-gray-800">
+                <i class="fas fa-globe text-brand text-xl"></i>
+                <span class="text-sm font-semibold uppercase tracking-widest text-black dark:text-white">GetYourGuide Top Activity</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CTA — SPLIT DARK BANNER
+══════════════════════════════════════════════════ -->
+<section class="relative py-32 bg-black overflow-hidden">
+
+    <!-- BG Image -->
+    <div class="absolute inset-0">
+        <img src="images\img5.avif"
+             alt="Hang glider" class="w-full h-full object-cover ">
+        <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+
+    
+    <div class="relative z-10 container mx-auto px-6 md:px-16 lg:px-24">
+        <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <!-- Left -->
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-6">Ready To Fly?</span>
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-semibold uppercase tracking-tighter text-white leading-[.9] mb-8">
+                    Your Story<br>Starts With<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">One Step.</span>
+                </h2>
+            </div>
+
+            <!-- Right -->
+            <div class="flex flex-col gap-6">
+                <p class="text-base text-white/50 leading-relaxed font-normal max-w-sm">
+                    Twelve thousand people have stood where you're standing now — wondering if they should. Every single one of them said yes. Every single one of them didn't regret it.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="packages.html" class="rounded-xl group px-10 py-5 bg-brand text-white font-semibold text-xs uppercase tracking-widest shadow-[0_0_40px_rgba(58,134,255,.5)] hover:bg-white hover:text-black hover:shadow-none transition-all duration-300 glow-btn">
+                        <span class="flex items-center gap-3">Book My Flight <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i></span>
+                    </a>
+                    <a href="tel:+15551234567" class="rounded-xl group px-10 py-5 border-2 border-white/20 text-white font-medium text-xs uppercase tracking-widest hover:border-brand hover:bg-brand/10 transition-all duration-300">
+                        <span class="flex items-center gap-3"><i class="fas fa-phone text-brand group-hover:text-white transition-colors"></i> Call Us</span>
+                    </a>
+                </div>
+                <!-- Trust micro-line -->
+                <p class="text-[10px] text-white/30 font-normal uppercase tracking-widest flex items-center gap-2">
+                    <i class="fas fa-shield-alt text-brand"></i>
+                    Free cancellation · No hidden fees · Instant confirmation
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script>
+    /* ─── DARK MODE ─── */
+    (function(){
+        const s = localStorage.getItem('theme');
+        if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))
+            document.documentElement.classList.add('dark');
+    })();
+    function toggleDark(){
+        const d = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', d?'dark':'light');
+    }
+
+    /* ─── MOBILE MENU ─── */
+    let _open = false;
+    function toggleMenu(){
+        _open = !_open;
+        document.getElementById('mob-menu').classList.toggle('open',_open);
+    }
+
+    /* ─── STICKY NAV ─── */
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll',()=> nav.classList.toggle('scrolled',scrollY>60));
+
+    /* ─── MARQUEE DUPLICATE ─── */
+    (function(){
+        const t = document.getElementById('marq-track');
+        if(t){ t.innerHTML += t.innerHTML; }
+    })();
+
+    /* ─── TICKER DUPLICATE ─── */
+    (function(){
+        const t = document.getElementById('ticker-track');
+        if(t){ t.innerHTML += t.innerHTML; }
+    })();
+
+    /* ─── SCROLL REVEAL ─── */
+    const ro = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+            if(e.isIntersecting){
+                const delay = parseFloat(e.target.dataset.delay||0)*1000;
+                setTimeout(()=> e.target.classList.add('visible'), delay);
+                ro.unobserve(e.target);
+            }
+        });
+    },{threshold:0.1});
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>ro.observe(el));
+
+    /* ─── SMOOTH SCROLL FOR ANCHOR LINKS ─── */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click',e=>{
+            const t=document.querySelector(a.getAttribute('href'));
+            if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+        });
+    });
+</script>
+ <div id="footer"></div>
+    <div id="navbar"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+</body>
+</html>

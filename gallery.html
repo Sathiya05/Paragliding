@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGlide | Aerial Transformation Gallery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+              <link rel="icon" href="images\logo.png">
+                            <link rel="icon" href="images\logo.png">
+
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',    /* Electric Blue */
+                        darkbg: '#050505',   /* Deep Black */
+                        lightbg: '#FFFFFF',  
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4 { font-weight: 600 !important; }
+        
+        /* Skewed decorative elements */
+        .skew-box { transform: skewX(-12deg); }
+        .unskew-box { transform: skewX(12deg); }
+
+        /* Custom Masonry-like spacing for unique look */
+        .gallery-container {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 768px) { .gallery-container { column-count: 2; } }
+        @media (min-width: 1024px) { .gallery-container { column-count: 3; } }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Hover Glow Effect */
+        .img-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid #3A86FF;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: all 0.4s ease;
+            border-radius: 1.5rem;
+            pointer-events: none;
+        }
+        .img-card:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body class="bg-lightbg dark:bg-darkbg text-black dark:text-white transition-colors duration-300 antialiased">
+
+    <div id="navbar"></div>
+
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images\img1.avif" 
+                 alt="Hang Glider Sky View" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60 dark:bg-darkbg/80"></div>
+        </div>
+
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/20 rounded-full blur-[120px] -mr-48 -mt-48"></div>
+
+        <div class="relative z-10 container mx-auto px-6 text-center">
+            <span class="inline-block px-5 py-1.5 rounded-full border border-brand/40 bg-brand/10 backdrop-blur-md text-brand text-[10px] font-bold uppercase tracking-[0.3em] mb-6">
+                Visual Experience
+            </span>
+            <h1 class="text-4xl md:text-7xl lg:text-8xl font-semibold uppercase tracking-tighter leading-[0.85] mb-6 text-white">
+                World Through <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">New Lens.</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-gray-300 text-lg md:text-xl font-normal leading-relaxed">
+                From 4,000ft above the ground, the world transforms. Explore the adrenaline and serenity captured by our flight crews.
+            </p>
+            <div class="mt-12 flex justify-center">
+                <a href="flights.html" class="rounded-xl px-12 py-5 bg-brand text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_30px_rgba(58,134,255,0.4)] hover:shadow-none">
+                    <span>Enter the Vault</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="main-gallery" class="py-24 bg-white dark:bg-[#080808]">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-16">
+                <button class="filter-btn px-8 py-3 rounded-full bg-brand text-white text-[11px] font-bold uppercase tracking-widest shadow-[0_10px_20px_rgba(58,134,255,0.2)] hover:shadow-[0_15px_30px_rgba(58,134,255,0.3)] hover:-translate-y-0.5 transition-all duration-300" data-filter="all">All Access</button>
+                <button class="filter-btn px-8 py-3 rounded-full border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 text-[11px] font-bold uppercase tracking-widest hover:border-brand hover:text-brand hover:-translate-y-0.5 transition-all duration-300" data-filter="paragliding">Paragliding</button>
+                <button class="filter-btn px-8 py-3 rounded-full border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 text-[11px] font-bold uppercase tracking-widest hover:border-brand hover:text-brand hover:-translate-y-0.5 transition-all duration-300" data-filter="hanggliding">Hang Gliding</button>
+                <button class="filter-btn px-8 py-3 rounded-full border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 text-[11px] font-bold uppercase tracking-widest hover:border-brand hover:text-brand hover:-translate-y-0.5 transition-all duration-300" data-filter="acro">XTreme Acro</button>
+            </div>
+
+            <div class="gallery-container">
+                
+                <div class="gallery-item group relative img-card rounded-[1.5rem] overflow-hidden cursor-pointer" data-category="paragliding">
+                    <img src="images\Alpine Flight.avif" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
+                        <span class="text-brand font-bold text-[9px] uppercase tracking-widest mb-1">Alpine Flight</span>
+                        <h3 class="text-white text-xl uppercase">The Summit Glide</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item group relative img-card rounded-[1.5rem] overflow-hidden cursor-pointer" data-category="acro">
+                    <img src="images\img8.avif" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-brand/40 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                        <div class="w-14 h-14 rounded-full bg-white text-brand flex items-center justify-center shadow-2xl"><i class="fas fa-play text-xl"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item group relative img-card rounded-[1.5rem] overflow-hidden cursor-pointer" data-category="hanggliding">
+                    <img src="images\1.avif" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity p-8 flex items-center justify-center">
+                        <p class="text-white text-center text-xs font-medium uppercase tracking-[0.2em]">Pacific Coast Ridge Run</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item group relative img-card rounded-[1.5rem] overflow-hidden cursor-pointer" data-category="paragliding">
+                    <img src="images\Sky High.avif" class="w-full h-[500px] object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-8">
+                        <h3 class="text-white text-2xl uppercase">Sky High</h3>
+                    </div>
+                </div>
+
+                <div class="gallery-item group relative img-card rounded-[1.5rem] overflow-hidden cursor-pointer" data-category="acro">
+                    <img src="images\Featured Acro.webp" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute top-4 right-4 bg-brand text-white px-3 py-1 rounded-full text-[9px] font-bold uppercase">Featured Acro</div>
+                </div>
+
+                <div class="gallery-item group relative img-card rounded-[1.5rem] overflow-hidden cursor-pointer" data-category="hanggliding">
+                    <img src="images\2.webp" class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 bg-gray-50 dark:bg-darkbg relative overflow-hidden">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="relative order-2 lg:order-1 mt-12 lg:mt-0">
+                    <div class="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-16 h-16 md:w-24 md:h-24 border-t-4 border-l-4 border-brand z-10"></div>
+                    <div class="rounded-3xl overflow-hidden shadow-2xl group relative">
+                        <img src="images\img.jpeg" alt="Pilot POV" class="w-full h-[350px] md:h-[500px] object-cover group-hover:scale-105 transition-transform duration-1000">
+                    </div>
+                    <div class="absolute -bottom-6 -right-2 md:-bottom-8 md:-right-8 bg-white dark:bg-[#111] p-5 md:p-8 rounded-2xl shadow-2xl border border-gray-100 dark:border-white/5 z-20 max-w-[200px] md:max-w-none">
+                        <div class="flex items-center gap-3 md:gap-4 mb-2 md:mb-4">
+                            <i class="fas fa-video text-brand text-xl md:text-2xl"></i>
+                            <h4 class="text-[10px] md:text-sm font-bold uppercase tracking-widest">Live 4K POV</h4>
+                        </div>
+                        <p class="text-[9px] md:text-xs text-gray-500 font-medium">Captured on: GoPro Hero 12</p>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2 text-center lg:text-left">
+                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand mb-4 block">Unedited Moments</span>
+                    <h2 class="text-3xl md:text-5xl uppercase tracking-tighter mb-6 md:mb-8 leading-tight">
+                        The Pilot's <br> <span class="text-brand">Perspective</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 font-normal leading-relaxed mb-10 text-base md:text-lg max-w-2xl mx-auto lg:mx-0">
+                        Get a glimpse of what our pilots see every day. These are raw, unedited moments from the cockpit. Feel the wind through the imagery.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 md:gap-6 mb-12">
+                        <div class="p-5 md:p-6 bg-white dark:bg-[#111] rounded-2xl shadow-sm border-b-4 border-brand">
+                            <h4 class="text-xl md:text-2xl font-bold mb-1">15k+</h4>
+                            <p class="text-[9px] md:text-[10px] text-gray-400 uppercase font-bold tracking-widest">Snapshots Taken</p>
+                        </div>
+                        <div class="p-5 md:p-6 bg-white dark:bg-[#111] rounded-2xl shadow-sm border-b-4 border-black dark:border-white">
+                            <h4 class="text-xl md:text-2xl font-bold mb-1">200+</h4>
+                            <p class="text-[9px] md:text-[10px] text-gray-400 uppercase font-bold tracking-widest">4K Flight Clips</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center lg:justify-start">
+                        <button class="flex items-center gap-4 text-brand font-bold uppercase text-xs tracking-[0.3em] group">
+                            Watch POV Reel <span class="w-8 md:w-12 h-[1px] bg-brand group-hover:w-20 transition-all"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="relative py-24 bg-gray-50 dark:bg-[#0a0a0a] overflow-hidden transition-colors duration-300">
+        
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none opacity-20 dark:opacity-10">
+            <div class="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] bg-brand/10 rounded-full blur-[120px]"></div>
+            <div class="absolute -bottom-1/2 -left-1/4 w-[600px] h-[600px] bg-brand/20 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand mb-4 block">Proven Excellence</span>
+                <h2 class="text-3xl md:text-5xl font-semibold uppercase tracking-tighter text-black dark:text-white leading-tight">
+                    Beyond the <span class="text-brand ">Horizon</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-6 text-lg font-normal leading-relaxed">
+                    Our gallery isn't just about photos; it's a testament to thousands of safe, exhilarating hours spent in the sky with adventurers like you.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <div class="group bg-white dark:bg-[#111] rounded-[2rem] p-10 shadow-xl border border-gray-100 dark:border-gray-800 hover:border-brand/40 transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center text-brand text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="text-4xl font-semibold text-black dark:text-white mb-2">15k+</h3>
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">Successful Takeoffs</p>
+                </div>
+
+                <div class="group bg-brand rounded-[2rem] p-10 shadow-[0_20px_50px_rgba(58,134,255,0.3)] text-white transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-white text-2xl mb-6 group-hover:rotate-12 transition-transform">
+                        <i class="fas fa-shield-heart"></i>
+                    </div>
+                    <h3 class="text-4xl font-semibold mb-2">100%</h3>
+                    <p class="text-xs font-bold uppercase tracking-widest text-white/80">Safety Record</p>
+                </div>
+
+                <div class="group bg-white dark:bg-[#111] rounded-[2rem] p-10 shadow-xl border border-gray-100 dark:border-gray-800 hover:border-brand/40 transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center text-brand text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <h3 class="text-4xl font-semibold text-black dark:text-white mb-2">42k+</h3>
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">Total Air Hours</p>
+                </div>
+
+                <div class="group bg-white dark:bg-[#111] rounded-[2rem] p-10 shadow-xl border border-gray-100 dark:border-gray-800 hover:border-brand/40 transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center text-brand text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="text-4xl font-semibold text-black dark:text-white mb-2">20+</h3>
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">Master Instructors</p>
+                </div>
+
+            </div>
+
+            <div class="mt-20 text-center">
+                <a href="contact.html" 
+                   class="rounded-xl inline-block px-12 py-5 bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-brand dark:hover:bg-brand dark:hover:text-white transition-all duration-300">
+                    <span class=" block">Reserve Your Experience</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+    <section class="relative py-32 bg-black overflow-hidden">
+        <!-- BG -->
+        <div class="absolute inset-0">
+            <img src="images\img1.avif" alt="CTA Background" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-br from-brand/20 via-transparent to-cyan-500/10"></div>
+        </div>
+
+     
+        <div class="container mx-auto px-6 text-center relative z-10 text-white">
+            <h2 class="text-3xl md:text-5xl lg:text-7xl font-semibold uppercase tracking-tighter mb-6 leading-none">
+                Want your own <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">Aerial shots?</span>
+            </h2>
+            <p class="max-w-xl mx-auto text-white/70 font-medium mb-12 leading-relaxed text-lg">
+                Every flight includes a high-res media package. Capture your transformation from earth-dweller to sky-glider.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
+                <a href="packages.html" class="rounded-xl w-full sm:w-auto px-12 py-5 bg-brand text-white text-xs font-bold uppercase tracking-widest shadow-[0_0_40px_rgba(58,134,255,0.4)] hover:bg-white hover:text-black transition-all duration-300">
+                    <span class="flex items-center justify-center gap-3">Book Your Flight <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="contact.html" class="rounded-xl w-full sm:w-auto px-12 py-5 bg-transparent border-2 border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:border-brand hover:bg-brand/10 transition-all duration-300">
+                    <span class="flex items-center justify-center gap-3">Custom Media Inquiry</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+        // Gallery Filter Logic
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Reset all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-brand', 'text-white', 'shadow-[0_10px_20px_rgba(58,134,255,0.2)]', 'hover:text-white');
+                    b.classList.add('border', 'border-gray-200', 'dark:border-white/10', 'text-gray-500', 'hover:text-brand');
+                });
+                
+                // Set active button
+                this.classList.remove('border', 'border-gray-200', 'dark:border-white/10', 'text-gray-500', 'hover:text-brand');
+                this.classList.add('bg-brand', 'text-white', 'shadow-[0_10px_20px_rgba(58,134,255,0.2)]', 'hover:text-white');
+
+                const filter = this.getAttribute('data-filter');
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGlide | Select Your Mission</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',
+                        darkbg: '#050505',
+                        lightbg: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4 { font-weight: 600 !important; }
+
+        /* HUD ELEMENTS */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark .glass-panel { background: rgba(5, 5, 5, 0.4); }
+
+        /* SKEW SHAPES */
+        .skew-shape { transform: skewX(-12deg); }
+        .unskew-shape { transform: skewX(12deg); }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+
+        @keyframes pulse-border {
+            0% { border-color: rgba(58, 134, 255, 0.2); }
+            50% { border-color: rgba(58, 134, 255, 0.8); }
+            100% { border-color: rgba(58, 134, 255, 0.2); }
+        }
+        .pulse-border { animation: pulse-border 3s infinite; }
+
+        /* SCROLL REVEAL */
+        .reveal { opacity:0; transform:translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+
+        /* MASONRY OVERRIDE */
+        .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+    </style>
+</head>
+
+<body class="bg-lightbg dark:bg-darkbg text-black dark:text-white transition-colors duration-300 antialiased">
+
+    <div id="navbar"></div>
+
+ <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-darkbg py-20">
+        
+        <div class="absolute inset-0 z-0 flex justify-center lg:justify-end">
+            <div class="w-full h-full relative">
+                <img src="images/bg.avif" 
+                     alt="Tandem Flight View" class="w-full h-full object-cover scale-105 transform hover:scale-100 transition-transform duration-[15s] ease-out">
+                
+                <div class="absolute inset-0 bg-black/60 md:bg-black/50"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-transparent to-transparent opacity-80"></div>
+            </div>
+        </div>
+
+        <div class="relative z-20 container mx-auto px-6 md:px-12 lg:px-24">
+            <div class="flex flex-col lg:flex-row justify-between items-center lg:items-center gap-12 lg:gap-16 w-full">
+                
+                <div class="max-w-3xl lg:pl-8 w-full flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+                        <span class="w-8 md:w-12 h-[2px] bg-brand"></span>
+                        <span class="text-[9px] md:text-[10px] text-brand font-bold uppercase tracking-[0.3em] md:tracking-[0.4em]">Flight Protocol Activated</span>
+                        <span class="w-8 md:w-12 h-[2px] bg-brand lg:hidden"></span> </div>
+                    
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-semibold uppercase tracking-tighter leading-[0.95] text-white mb-6 md:mb-8">
+                        Chart Your <br class="hidden lg:block"> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">Trajectory.</span>
+                    </h1>
+                    
+                    <p class="text-gray-300 md:text-gray-400 text-base md:text-lg lg:text-xl font-normal leading-relaxed mb-10 md:mb-12 max-w-lg mx-auto lg:mx-0">
+                        Select your mission parameters. From serene high-altitude glides to dynamic acrobatic maneuvers. The airspace is yours.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 w-full sm:w-auto">
+                        <a href="blog.html" class="rounded-xl w-full sm:w-auto px-10 md:px-12 py-4 md:py-5 bg-brand text-white text-[10px] md:text-xs font-bold uppercase tracking-widest text-center shadow-[0_0_30px_rgba(58,134,255,0.3)] hover:bg-white hover:text-brand transition-all group overflow-hidden relative">
+                            <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                            <span class="block relative z-10 group-hover:text-black">Select Mission</span>
+                        </a>
+                        <a href="blog.html" class="w-full sm:w-auto flex justify-center items-center gap-3 text-white text-[10px] md:text-xs font-bold uppercase tracking-widest hover:text-brand transition-colors group py-3 sm:py-0">
+                            <span class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center group-hover:border-brand transition-colors">
+                                <i class="fas fa-play text-[8px] ml-0.5 group-hover:text-brand"></i>
+                            </span>
+                            Custom Briefing
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-auto grid grid-cols-2 sm:flex sm:flex-row lg:flex-col justify-center sm:justify-center lg:justify-start gap-6 sm:gap-8 lg:gap-12 border-t lg:border-t-0 lg:border-l border-white/20 pt-8 lg:pt-0 lg:pl-12">
+                    
+                    <div class="col-span-1 text-center lg:text-left">
+                        <div class="text-[8px] md:text-[9px] text-gray-300 lg:text-gray-200 font-bold uppercase tracking-[0.2em] md:tracking-widest mb-1 md:mb-2 flex items-center justify-center lg:justify-start gap-2">
+                            <i class="fas fa-arrow-up text-brand"></i> Max Elevation
+                        </div>
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white">4,280<span class="text-brand text-xs md:text-sm ml-1">FT</span></div>
+                    </div>
+
+                    <div class="col-span-1 text-center lg:text-left">
+                        <div class="text-[8px] md:text-[9px] text-gray-300 lg:text-gray-200 font-bold uppercase tracking-[0.2em] md:tracking-widest mb-1 md:mb-2 flex items-center justify-center lg:justify-start gap-2">
+                            <i class="fas fa-wind text-cyan-400"></i> Wind Speed
+                        </div>
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white">12-15<span class="text-cyan-400 text-xs md:text-sm ml-1">KTS</span></div>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1 border-t sm:border-t-0 border-white/10 pt-4 sm:pt-0 text-center lg:text-left">
+                        <div class="text-[8px] md:text-[9px] text-gray-300 lg:text-gray-200 font-bold uppercase tracking-[0.2em] md:tracking-widest mb-1 md:mb-2 flex items-center justify-center lg:justify-start gap-2">
+                            <i class="fas fa-shield-check text-green-500"></i> Status
+                        </div>
+                        <div class="text-lg sm:text-xl md:text-2xl font-semibold text-green-500 uppercase tracking-widest">Clear To Fly</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="missions" class="py-32 bg-white dark:bg-[#080808]">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
+                <div class="reveal">
+                    <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-4">Flight Tiers</span>
+                    <h2 class="text-4xl md:text-5xl uppercase tracking-tighter">Mission <span class="text-brand">Briefings</span></h2>
+                </div>
+                <div class="reveal lg:w-1/3">
+                    <p class="text-sm text-gray-500 font-normal leading-relaxed">Every flight mission includes a certified master pilot, 4K action footage, and a full pre-flight briefing.</p>
+                </div>
+            </div>
+
+            <div class="mission-grid">
+                <div class="reveal group relative bg-gray-50 dark:bg-[#111] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-800 transition-all hover:shadow-2xl">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images\Alpine Discovery.avif" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-6 left-6 px-4 py-2 glass-panel rounded-xl text-white text-xs font-bold uppercase tracking-widest">Entry Level</div>
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-2xl font-semibold uppercase mb-4">Alpine Discovery</h3>
+                        <p class="text-sm text-gray-500 mb-8 leading-relaxed">The classic introduction. A smooth 20-minute descent from the summit with gentle thermals.</p>
+                        <div class="flex justify-between items-center pt-8 border-t border-gray-100 dark:border-gray-800">
+                            <span class="text-3xl font-semibold">$180 <span class="text-[10px] text-gray-400">/MISSION</span></span>
+                            <a href="contact.html" class="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center hover:bg-black transition-colors"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal group relative bg-brand text-white rounded-[2.5rem] overflow-hidden shadow-2xl lg:-translate-y-8" style="animation-delay: 0.1s">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images\The Thermic Run.webp" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 group-hover:grayscale-0">
+                        <div class="absolute top-6 left-6 px-4 py-2 bg-white text-brand rounded-xl text-xs font-bold uppercase tracking-widest">Top Rated</div>
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-2xl font-semibold uppercase mb-4">The Thermic Run</h3>
+                        <p class="text-sm text-white/80 mb-8 leading-relaxed">Reach higher altitudes. A 45-minute XC mission using rising air currents to navigate the peaks.</p>
+                        <div class="flex justify-between items-center pt-8 border-t border-white/20">
+                            <span class="text-3xl font-semibold">$320 <span class="text-[10px] text-white/60">/MISSION</span></span>
+                            <a href="contact.html" class="w-12 h-12 rounded-full bg-white text-brand flex items-center justify-center hover:bg-darkbg hover:text-white transition-colors"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal group relative bg-gray-50 dark:bg-[#111] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-800 transition-all hover:shadow-2xl" style="animation-delay: 0.2s">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images\The Acro Vortex.webp" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-6 left-6 px-4 py-2 glass-panel rounded-xl text-white text-xs font-bold uppercase tracking-widest">Acro Master</div>
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-2xl font-semibold uppercase mb-4">The Acro Vortex</h3>
+                        <p class="text-sm text-gray-500 mb-8 leading-relaxed">High-G spirals, wing-overs, and extreme adrenaline. Experience 4.5G maneuvers with an acro pilot.</p>
+                        <div class="flex justify-between items-center pt-8 border-t border-gray-100 dark:border-gray-800">
+                            <span class="text-3xl font-semibold">$450 <span class="text-[10px] text-gray-400">/MISSION</span></span>
+                            <a href="contact.html" class="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center hover:bg-black transition-colors"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-gray-50 dark:bg-darkbg overflow-hidden">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="reveal-left">
+                    <h2 class="text-4xl md:text-5xl uppercase tracking-tighter mb-10">The Flight <span class="text-brand">Timeline</span></h2>
+                    <div class="space-y-12">
+                        <div class="flex gap-6 group">
+                            <div class="w-14 h-14 shrink-0 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-xl group-hover:bg-brand group-hover:text-white transition-all">01</div>
+                            <div>
+                                <h4 class="text-lg font-semibold uppercase mb-2">Technical Briefing</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 font-normal">Our team conducts a weather check and equipment audit. You learn the launch and landing stances.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div class="w-14 h-14 shrink-0 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-xl group-hover:bg-brand group-hover:text-white transition-all">02</div>
+                            <div>
+                                <h4 class="text-lg font-semibold uppercase mb-2">The Launch Sequence</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 font-normal">A short run against the wind, a lift of the wing, and a sudden transition from earth to air.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div class="w-14 h-14 shrink-0 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-xl group-hover:bg-brand group-hover:text-white transition-all">03</div>
+                            <div>
+                                <h4 class="text-lg font-semibold uppercase mb-2">Mission Accomplished</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 font-normal">A gentle landing in the valley, followed by an immediate cloud sync of your flight footage.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal relative">
+                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-brand/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div class="rounded-[3rem] overflow-hidden border border-gray-100 dark:border-gray-800 shadow-2xl">
+                        <img src="images\time.avif" class="w-full h-[600px] object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="py-24 bg-white dark:bg-[#080808] relative overflow-hidden transition-colors duration-300">
+        
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <div class="lg:col-span-5 space-y-10">
+                    <div class="reveal">
+                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand mb-4 block">Strategic Locations</span>
+                        <h2 class="text-3xl md:text-5xl font-semibold uppercase tracking-tighter text-black dark:text-white leading-tight mb-6">
+                            Launch <span class="text-brand">Sectors</span>
+                        </h2>
+                        <p class="text-gray-500 dark:text-gray-400 font-normal leading-relaxed">
+                            We operate across three primary sectors, each offering unique wind conditions and topographic vistas.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="reveal group p-6 rounded-2xl bg-gray-50 dark:bg-[#111] border-l-4 border-brand hover:shadow-xl transition-all cursor-pointer">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-semibold uppercase">Sector Alpha: Eagle Peak</h4>
+                                <span class="text-[10px] font-bold text-brand bg-brand/10 px-2 py-1 rounded">2,400M ASL</span>
+                            </div>
+                            <p class="text-xs text-gray-500 font-normal">Our primary thermal hub. Consistent rising currents and high-altitude launches.</p>
+                        </div>
+
+                        <div class="reveal group p-6 rounded-2xl bg-gray-50 dark:bg-[#111] border-l-4 border-black dark:border-white hover:shadow-xl transition-all cursor-pointer">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-semibold uppercase">Sector Beta: Cloud Valley</h4>
+                                <span class="text-[10px] font-bold text-gray-400 bg-gray-200 dark:bg-white/10 px-2 py-1 rounded">1,800M ASL</span>
+                            </div>
+                            <p class="text-xs text-gray-500 font-normal">Ideal for Discovery missions and gentle valley glides. Shielded from high-velocity winds.</p>
+                        </div>
+
+                        <div class="reveal group p-6 rounded-2xl bg-gray-50 dark:bg-[#111] border-l-4 border-brand/40 hover:shadow-xl transition-all cursor-pointer">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg font-semibold uppercase">Sector Gamma: Ridge Run</h4>
+                                <span class="text-[10px] font-bold text-brand bg-brand/10 px-2 py-1 rounded">Sea Level Hub</span>
+                            </div>
+                            <p class="text-xs text-gray-500 font-normal">Coastal soaring missions. Dynamic ridge lift provided by steady oceanic breeze.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 relative">
+                    <div class="absolute -inset-4 bg-brand/10 rounded-[3rem] blur-2xl opacity-50"></div>
+                    <div class="relative rounded-[3rem] overflow-hidden border border-gray-100 dark:border-gray-800 shadow-2xl bg-gray-200 dark:bg-[#111] aspect-square lg:aspect-auto lg:h-[600px]">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000" 
+                             class="w-full h-full object-cover grayscale dark:opacity-40" alt="Tactical Map View">
+                        
+                        <div class="absolute top-1/4 left-1/3 group cursor-pointer">
+                            <div class="w-4 h-4 bg-brand rounded-full animate-ping absolute inset-0"></div>
+                            <div class="w-4 h-4 bg-brand rounded-full relative border-2 border-white shadow-lg"></div>
+                            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[9px] font-bold px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Eagle Peak</div>
+                        </div>
+
+                        <div class="absolute bottom-1/3 right-1/4 group cursor-pointer">
+                            <div class="w-4 h-4 bg-white rounded-full animate-ping absolute inset-0"></div>
+                            <div class="w-4 h-4 bg-white rounded-full relative border-2 border-brand shadow-lg"></div>
+                            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[9px] font-bold px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Cloud Valley</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<section class="py-24 bg-gray-50 dark:bg-darkbg relative overflow-hidden transition-colors duration-300">
+        
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand/5 skew-shape translate-x-1/4 pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand mb-4 block">The Aero Squad</span>
+                <h2 class="text-3xl md:text-5xl font-semibold uppercase tracking-tighter text-black dark:text-white leading-tight">
+                    Master <span class="text-brand">Aviators</span>
+                </h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-6 text-lg font-normal leading-relaxed">
+                    Our team consists of world-competition paragliding veterans and certified flight safety instructors.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="group relative bg-white dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-800 hover:border-brand/40 transition-all duration-500 shadow-sm">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="images\pro1.avif" 
+                             class="w-full h-full object-cover grayscale-0 group-hover:grayscale transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-6 left-8">
+                            <h4 class="text-white text-xl font-semibold uppercase tracking-tight">Marcus Vane</h4>
+                            <p class="text-brand text-[10px] font-bold uppercase tracking-widest">Chief Operations Pilot</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-1 text-brand text-[8px]">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">15yr Experience</span>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">Specializing in high-altitude thermal navigation and Alpine route mapping.</p>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-800 hover:border-brand/40 transition-all duration-500 shadow-sm">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="images\pro3.avif" 
+                             class="w-full h-full object-cover grayscale-0 group-hover:grayscale transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-6 left-8">
+                            <h4 class="text-white text-xl font-semibold uppercase tracking-tight">Elena Richter</h4>
+                            <p class="text-brand text-[10px] font-bold uppercase tracking-widest">Acrobatic Lead</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-1 text-brand text-[8px]">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">12yr Experience</span>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">World-class acrobatics specialist. Expert in high-G maneuvers and wing control.</p>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-800 hover:border-brand/40 transition-all duration-500 shadow-sm">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="images\pro2.avif" 
+                             class="w-full h-full object-cover grayscale-0 group-hover:grayscale transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-6 left-8">
+                            <h4 class="text-white text-xl font-semibold uppercase tracking-tight">Stefan Kraus</h4>
+                            <p class="text-brand text-[10px] font-bold uppercase tracking-widest">Technical Director</p>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="flex gap-1 text-brand text-[8px]">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">18yr Experience</span>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">Lead of gear certification and meteorological pre-flight analysis.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-16 bg-brand/10 border border-brand/20 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-black dark:text-white">Squad Status: All Pilots Ready for Dispatch</span>
+                </div>
+                <button class="text-[10px] font-bold uppercase tracking-widest text-brand hover:text-black dark:hover:text-white transition-colors">
+                    View Full Flight Roster <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+
+        </div>
+    </section>
+    <section class="py-20 bg-[#0c0c0c] border-y border-white/5">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                <div class="reveal flex items-center gap-6">
+                    <div class="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 border border-green-500/20">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <div class="text-[9px] text-gray-500 uppercase font-bold tracking-widest">Fleet Status</div>
+                        <div class="text-white font-semibold uppercase">All Wings Certified</div>
+                    </div>
+                </div>
+                <div class="reveal flex items-center gap-6" style="animation-delay: 0.1s">
+                    <div class="w-12 h-12 rounded-full bg-brand/10 flex items-center justify-center text-brand border border-brand/20">
+                        <i class="fas fa-tower-broadcast"></i>
+                    </div>
+                    <div>
+                        <div class="text-[9px] text-gray-500 uppercase font-bold tracking-widest">Live Monitoring</div>
+                        <div class="text-white font-semibold uppercase">VHF Ground Radio Active</div>
+                    </div>
+                </div>
+                <div class="reveal flex items-center gap-6" style="animation-delay: 0.2s">
+                    <div class="w-12 h-12 rounded-full bg-[#C65D3B]/10 flex items-center justify-center text-[#C65D3B] border border-[#C65D3B]/20">
+                        <i class="fas fa-cloud-bolt"></i>
+                    </div>
+                    <div>
+                        <div class="text-[9px] text-gray-500 uppercase font-bold tracking-widest">Weather Engine</div>
+                        <div class="text-white font-semibold uppercase">2.5m Stability Index</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <section class="relative py-20 md:py-24 bg-darkbg overflow-hidden transition-colors duration-300">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="images\The Acro Vortex.webp" 
+                 alt="Paraglider silhouette at sunset" 
+                 class="w-full h-full object-cover opacity-60 scale-105 transform transition-transform duration-[20s] hover:scale-100 ease-out">
+            
+            <div class="absolute inset-0 bg-gradient-to-r from-darkbg via-transparent to-darkbg opacity-80"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand/20 via-transparent to-darkbg/70"></div>
+        </div>
+
+        <div class="absolute inset-0 overflow-hidden pointer-events-none z-10 opacity-30">
+            <div class="wind-line absolute h-[1px] bg-gradient-to-r from-transparent via-brand to-transparent w-32 animate-[windLine_4s_linear_infinite]" style="top: 20%; left: -10%;"></div>
+            <div class="wind-line absolute h-[1px] bg-gradient-to-r from-transparent via-brand to-transparent w-48 animate-[windLine_6s_linear_infinite_1s]" style="top: 50%; left: -10%;"></div>
+            <div class="wind-line absolute h-[1px] bg-gradient-to-r from-transparent via-brand to-transparent w-24 animate-[windLine_5s_linear_infinite_2s]" style="top: 80%; left: -10%;"></div>
+        </div>
+
+        <div class="relative z-20 container mx-auto px-6 text-center">
+            
+            <div class="max-w-4xl mx-auto relative overflow-hidden group">
+                
+                <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-brand/30 bg-brand/10 text-brand text-[10px] font-bold uppercase tracking-[0.3em] mb-6 md:mb-8">
+                    <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+                    Operational Readiness: Green
+                </span>
+
+                <h2 class="text-4xl md:text-7xl font-semibold uppercase tracking-tighter leading-[0.85] text-white mb-6 md:mb-8">
+                    Ready for <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">Ignition?</span>
+                </h2>
+                
+                <p class="max-w-xl mx-auto text-gray-300 text-base md:text-lg font-normal leading-relaxed mb-10">
+                    Limited flight windows are available for the current season. Initialize your profile and reserve your mission today.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <a href="contact.html" class="rounded-xl group relative w-full sm:w-auto px-12 py-5 bg-brand text-white font-bold text-xs uppercase tracking-[0.2em] shadow-[0_0_30px_rgba(58,134,255,0.4)] hover:bg-white hover:text-brand transition-all duration-300 overflow-hidden">
+                        <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                        <span class=" block relative z-10 group-hover:text-black">Confirm Reservation</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script>
+        /* ─── SCROLL REVEAL ─── */
+        const ro = new IntersectionObserver((entries)=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting){
+                    e.target.classList.add('visible');
+                    ro.unobserve(e.target);
+                }
+            });
+        },{threshold:0.1});
+        document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+    </script>
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+</body>
+</html>

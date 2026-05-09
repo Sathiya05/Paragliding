@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGlide | Pilot Registration</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',    /* Electric Blue */
+                        darkbg: '#050505',   /* Deep Black */
+                        lightbg: '#F8FAFF',  /* Sky Light Blue */
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .skew-shape {
+            transform: skewX(-12deg);
+        }
+
+        .unskew-shape {
+            transform: skewX(12deg);
+        }
+
+        * {
+            transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* RTL support for margins */
+        html[dir="rtl"] .ml-auto {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        html[dir="rtl"] .mr-2 {
+            margin-right: 0;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+
+<body class="bg-lightbg dark:bg-darkbg text-black dark:text-white antialiased min-h-screen overflow-x-hidden">
+
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3">
+        <button id="rtlToggle"
+            class="w-10 h-10 flex items-center justify-center rounded-xl bg-white dark:bg-[#111] shadow-lg border border-gray-200 dark:border-gray-800 text-brand font-bold text-[10px]">RTL</button>
+        <button id="themeToggle"
+            class="w-10 h-10 flex items-center justify-center rounded-xl bg-white dark:bg-[#111] shadow-lg border border-gray-200 dark:border-gray-800 text-brand">
+            <i id="themeIcon" class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <main class="flex h-screen overflow-hidden">
+
+        <div class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-brand">
+            <img src="images\Staying Aloft Longer.webp" alt="Paraglider preparation"
+                class="absolute inset-0 w-full h-full object-cover">
+
+            <div class="absolute inset-0 "></div>
+
+            <div class="relative z-10 w-full p-10 xl:p-16 flex flex-col justify-between">
+                <a href="index.html" class="flex items-center gap-3 group shrink-0 relative z-[100]">
+                    <div
+                        class="relative flex items-center justify-center w-10 h-10 bg-[#3A86FF] rounded-xl transform transition-transform duration-300 shadow-[0_0_15px_rgba(58,134,255,0.4)]">
+                        <i class="fas fa-wind text-white text-xl transition-transform duration-300"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tighter uppercase text-black dark:text-white">
+                            AERO<span class="text-[#3A86FF]">GLIDE</span>
+                        </span>
+                        <span
+                            class="text-[9px] tracking-[0.3em] uppercase text-gray-500 dark:text-gray-400 font-bold leading-none mt-1">Tandem
+                            Flights</span>
+                    </div>
+                </a>
+
+                <div>
+                    <h2
+                        class="text-5xl xl:text-6xl font-semibold text-white leading-tight uppercase tracking-tighter mb-4">
+                        Join the <br> <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-300">Elite</span>
+                        <br> Sky Deck.
+                    </h2>
+                    <p class="text-white/80 text-lg font-medium max-w-md">Start logging your flights, managing your
+                        certifications, and unlocking world-class aerial footage.</p>
+                </div>
+
+                <div class="flex items-center gap-8">
+                    <div class="flex flex-col">
+                        <span class="text-2xl xl:text-3xl font-semibold text-white">42k+</span>
+                        <span class="text-[10px] uppercase font-bold tracking-[0.2em] text-white/60">Registered
+                            Pilots</span>
+                    </div>
+                    <div class="w-[1px] h-10 bg-white/20"></div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl xl:text-3xl font-semibold text-white">Top 1%</span>
+                        <span class="text-[10px] uppercase font-bold tracking-[0.2em] text-white/60">Safety
+                            Ranking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-10 relative overflow-y-auto lg:overflow-hidden bg-lightbg dark:bg-darkbg">
+
+            <div class="absolute top-6 left-6 lg:hidden">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div
+                        class="relative flex items-center justify-center w-10 h-10 bg-[#3A86FF] rounded-xl shadow-[0_0_15px_rgba(58,134,255,0.4)]">
+                        <i class="fas fa-wind text-white text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tighter uppercase text-black dark:text-white">
+                            AERO<span class="text-[#3A86FF]">GLIDE</span>
+                        </span>
+                        <span
+                            class="text-[9px] tracking-[0.3em] uppercase text-gray-500 dark:text-gray-400 font-bold leading-none mt-1">Tandem
+                            Flights</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="w-full max-w-md space-y-3 md:space-y-4 mt-6 lg:mt-0">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-3xl md:text-4xl font-semibold uppercase tracking-tighter mb-1">New <span class="text-brand">Account.</span></h1>
+                    <p class="text-gray-500 dark:text-gray-400 font-medium text-xs">Join the global paragliding community.</p>
+                </div>
+
+                <div class="flex p-1 bg-gray-100 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-gray-800">
+                    <a href="login.html" class="flex-1 py-1.5 text-[10px] text-center font-bold uppercase tracking-widest rounded-xl text-gray-500 hover:text-brand transition-all">Sign In</a>
+                    <button class="flex-1 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-xl bg-white dark:bg-brand text-brand dark:text-white shadow-sm transition-all">Register</button>
+                </div>
+
+                <form class="space-y-2 md:space-y-3">
+                    <div class="relative group">
+                        <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand transition-colors text-xs"></i>
+                        <input type="text" placeholder="First Name" 
+                               class="w-full pl-11 pr-4 py-2 bg-white dark:bg-[#0a0a0a] border-2 border-gray-100 dark:border-gray-900 rounded-xl outline-none focus:border-brand transition-all font-medium text-sm">
+                    </div>
+
+                    <div class="relative group">
+                        <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand transition-colors text-xs"></i>
+                        <input type="text" placeholder="Last Name" 
+                               class="w-full pl-11 pr-4 py-2 bg-white dark:bg-[#0a0a0a] border-2 border-gray-100 dark:border-gray-900 rounded-xl outline-none focus:border-brand transition-all font-medium text-sm">
+                    </div>
+
+                    <div class="relative group">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand transition-colors text-sm"></i>
+                        <input type="email" placeholder="Email Address" 
+                               class="w-full pl-11 pr-4 py-2 bg-white dark:bg-[#0a0a0a] border-2 border-gray-100 dark:border-gray-900 rounded-xl outline-none focus:border-brand transition-all font-medium text-sm">
+                    </div>
+
+                    <div class="relative group">
+                        <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand transition-colors text-xs"></i>
+                        <input type="password" id="password" placeholder="Create Password" 
+                               class="w-full pl-11 pr-11 py-2 bg-white dark:bg-[#0a0a0a] border-2 border-gray-100 dark:border-gray-900 rounded-xl outline-none focus:border-brand transition-all font-medium text-sm">
+                        <button type="button" id="togglePassword" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand transition-colors focus:outline-none">
+                            <i class="fas fa-eye text-xs" id="eyeIcon"></i>
+                        </button>
+                    </div>
+
+                    <div class="relative group">
+                        <i class="fas fa-check-circle absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand transition-colors text-xs"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" 
+                               class="w-full pl-11 pr-11 py-2 bg-white dark:bg-[#0a0a0a] border-2 border-gray-100 dark:border-gray-900 rounded-xl outline-none focus:border-brand transition-all font-medium text-sm">
+                        <button type="button" id="toggleConfirmPassword" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand transition-colors focus:outline-none">
+                            <i class="fas fa-eye text-xs" id="confirmEyeIcon"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-3 px-1">
+                        <input type="checkbox" id="terms" class="w-4 h-4 rounded accent-brand">
+                        <label for="terms" class="text-[10px] font-bold text-gray-500 uppercase tracking-widest cursor-pointer leading-tight">
+                            I agree to <span class="text-brand">Safety Terms</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="rounded-xl w-full py-3 bg-brand text-white font-semibold text-sm uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(58,134,255,0.4)] hover:bg-black dark:hover:bg-white dark:hover:text-black transition-all group">
+                        <div class="flex items-center justify-center gap-3">
+                            Sign Up <i class="fas fa-paper-plane group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform"></i>
+                        </div>
+                    </button>
+                </form>
+
+                <div class="relative py-1 flex items-center justify-center">
+                    <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200 dark:border-gray-800"></div></div>
+                    <span class="relative bg-lightbg dark:bg-darkbg px-4 text-[9px] font-bold text-gray-400 uppercase tracking-[0.3em]">Quick Sync</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="flex items-center justify-center gap-3 py-2 bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-gray-800 rounded-xl hover:border-brand transition-all">
+                        <i class="fab fa-google text-brand text-base"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">Google</span>
+                    </button>
+                    <button class="flex items-center justify-center gap-3 py-2 bg-white dark:bg-[#0a0a0a] border border-gray-200 dark:border-gray-800 rounded-xl hover:border-brand transition-all">
+                        <i class="fab fa-apple text-black dark:text-white text-base"></i>
+                        <span class="text-[10px] font-bold uppercase tracking-widest">Apple</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Theme & RTL Logic matches Login Page for consistency
+        const themeBtn = document.getElementById("themeToggle");
+        const themeIcon = document.getElementById("themeIcon");
+        const html = document.documentElement;
+
+        themeBtn.addEventListener('click', () => {
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('aeroglide-dark', isDark);
+            themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        });
+
+        if (localStorage.getItem('aeroglide-dark') === 'true') {
+            html.classList.add('dark');
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        const rtlBtn = document.getElementById("rtlToggle");
+        rtlBtn.addEventListener('click', () => {
+            const currentDir = html.getAttribute("dir");
+            html.setAttribute("dir", currentDir === "rtl" ? "ltr" : "rtl");
+        });
+
+        // Password Toggle Logic
+        const setupToggle = (btnId, inputId, iconId) => {
+            const btn = document.getElementById(btnId);
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            btn.addEventListener('click', () => {
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                icon.className = type === 'password' ? 'fas fa-eye text-xs' : 'fas fa-eye-slash text-xs';
+            });
+        };
+
+        setupToggle('togglePassword', 'password', 'eyeIcon');
+        setupToggle('toggleConfirmPassword', 'confirmPassword', 'confirmEyeIcon');
+    </script>
+</body>
+
+</html>

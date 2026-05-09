@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGlide | Sky Deck Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',    /* Electric Blue */
+                        darkbg: '#050505',   /* Deep Black */
+                        lightbg: '#F8FAFF',  
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; font-weight: 400; }
+        h1, h2, h3, h4, h5, h6 { font-weight: 600 !important; }
+        
+        * { transition: all 0.3s ease; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        #sidebar { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        .page-content { display: none; }
+        .page-content.active { display: block; animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .skew-box { transform: skewX(-10deg); }
+        .unskew-box { transform: skewX(10deg); }
+
+        html[dir="rtl"] .ml-3 { margin-left: 0; margin-right: 0.75rem; }
+        html[dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }
+    </style>
+</head>
+
+<body class="antialiased overflow-x-hidden bg-lightbg dark:bg-darkbg text-black dark:text-white">
+
+    <div id="overlay" class="fixed inset-0 bg-black/60 backdrop-blur-md z-40 hidden transition-opacity duration-300"></div>
+
+    <div class="flex h-screen overflow-hidden relative">
+
+        <aside id="sidebar" class="fixed xl:static inset-y-0 left-0 w-80 flex-shrink-0 bg-white dark:bg-[#0a0a0a] shadow-2xl xl:shadow-none flex flex-col h-full border-r border-gray-200 dark:border-gray-800 z-50 transform -translate-x-full xl:translate-x-0">
+            
+            <div class="px-8 pt-10 pb-8 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                 <a href="index.html" class="flex items-center gap-3 group shrink-0 relative z-[100]">
+          <div class="relative flex items-center justify-center w-10 h-10 bg-[#3A86FF] rounded-xl transform transition-transform duration-300 shadow-[0_0_15px_rgba(58,134,255,0.4)]">
+            <i class="fas fa-wind text-white text-xl transition-transform duration-300"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold tracking-tighter uppercase text-black dark:text-white">
+              AERO<span class="text-[#3A86FF]">GLIDE</span>
+            </span>
+            <span class="text-[9px] tracking-[0.3em] uppercase text-gray-500 dark:text-gray-400 font-bold leading-none mt-1">Tandem Flights</span>
+          </div>
+        </a>
+                <button id="closeSidebarBtn" class="xl:hidden text-brand"><i class="fas fa-times text-xl"></i></button>
+            </div>
+
+            <div class="xl:hidden p-6 border-b border-gray-100 dark:border-gray-800 space-y-6">
+                <div class="flex items-center gap-4 bg-gray-50 dark:bg-white/5 p-4 rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" class="w-12 h-12 rounded-full border-2 border-brand object-cover">
+                    <div>
+                        <p class="text-[10px] font-bold text-brand uppercase tracking-widest">Blue Wing Pilot</p>
+                        <p class="font-semibold text-sm">Alex Skylar</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="mobileRtlToggle" class="flex-1 py-3 rounded-xl bg-gray-100 dark:bg-white/10 text-brand font-bold text-xs border border-gray-200 dark:border-gray-800 uppercase">RTL</button>
+                    <button id="mobileDarkToggle" class="flex-1 py-3 rounded-xl bg-gray-100 dark:bg-white/10 text-brand font-bold text-xs border border-gray-200 dark:border-gray-800">
+                        <i id="mobileThemeIcon" class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <nav id="sidebar-nav" class="mt-4 flex-1 px-4 space-y-2 overflow-y-auto no-scrollbar">
+                <a href="javascript:void(0)" onclick="showPage('dashboard', this)" class="nav-link flex items-center px-4 py-4 rounded-xl bg-brand/10 text-brand border border-brand/20">
+                    <i class="fas fa-th-large w-6 text-lg"></i>
+                    <span class="ml-3 font-semibold">Flight Overview</span>
+                </a>
+                <a href="javascript:void(0)" onclick="showPage('logs', this)" class="nav-link flex items-center p-4 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#111] hover:text-brand transition-all">
+                    <i class="fas fa-history w-6 text-lg"></i>
+                    <span class="ml-3 font-medium">Mission History</span>
+                </a>
+                <a href="javascript:void(0)" onclick="showPage('flights', this)" class="nav-link flex items-center p-4 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#111] hover:text-brand transition-all">
+                    <i class="fas fa-paper-plane w-6 text-lg"></i>
+                    <span class="ml-3 font-medium">My Flight Plan</span>
+                </a>
+                <a href="javascript:void(0)" onclick="showPage('media', this)" class="nav-link flex items-center p-4 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#111] hover:text-brand transition-all">
+                    <i class="fas fa-play-circle w-6 text-lg"></i>
+                    <span class="ml-3 font-medium">Aerial Footage</span>
+                </a>
+
+                <div class="pt-8 border-t border-gray-100 dark:border-gray-800 mx-4 mt-auto mb-8">
+                    <a href="login.html" class="flex items-center px-4 py-4 text-sm font-semibold text-red-500 rounded-xl hover:bg-red-500/10">
+                        <i class="fas fa-sign-out-alt w-6"></i>
+                        <span class="ml-3">Ground Mission</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 flex flex-col overflow-y-auto w-full">
+            
+            <header class="bg-white/80 dark:bg-darkbg/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800 px-6 py-5 sticky top-0 z-30 flex items-center justify-between">
+                <h1 id="mainTitle" class="text-xl md:text-2xl font-semibold uppercase tracking-tighter">Sky Deck</h1>
+
+                <div class="flex items-center gap-4">
+                    <div class="hidden xl:flex items-center gap-4">
+                        <div class="flex items-center bg-gray-100 dark:bg-[#111] p-1 rounded-xl border border-gray-200 dark:border-gray-800">
+                            <button id="desktopRtlToggle" class="w-9 h-9 flex items-center justify-center rounded-lg text-brand hover:bg-white dark:hover:bg-brand dark:hover:text-white transition-all">
+                                <span class="text-[10px] font-bold">RTL</span>
+                            </button>
+                            <button id="desktopDarkToggle" class="w-9 h-9 flex items-center justify-center rounded-lg text-brand hover:bg-white dark:hover:bg-brand dark:hover:text-white transition-all">
+                                <i id="desktopThemeIcon" class="fas fa-moon text-sm"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-3 p-1.5 pr-4 bg-gray-100 dark:bg-[#111] rounded-full border border-gray-200 dark:border-gray-800">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" class="w-9 h-9 rounded-full object-cover border-2 border-brand">
+                            <div class="text-left leading-tight">
+                                <p class="text-[10px] font-bold uppercase text-brand">Blue Wing</p>
+                                <p class="text-xs font-semibold dark:text-white">Alex Skylar</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="hamburgerBtn" class="xl:hidden w-12 h-12 flex items-center justify-center rounded-xl bg-brand text-white shadow-lg">
+                        <i class="fas fa-bars-staggered text-xl"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="p-6 xl:p-10 max-w-7xl mx-auto w-full space-y-10">
+
+                <div id="page-dashboard" class="page-content active space-y-10">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                        <div class="bg-white dark:bg-[#0a0a0a] p-8 rounded-3xl border-b-4 border-brand shadow-sm">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Base Altitude</p>
+                            <h3 class="text-3xl font-semibold">1,420m</h3>
+                        </div>
+                        <div class="bg-white dark:bg-[#0a0a0a] p-8 rounded-3xl border-b-4 border-black dark:border-white shadow-sm">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Total Air Time</p>
+                            <h3 class="text-3xl font-semibold">42.5 hrs</h3>
+                        </div>
+                        <div class="bg-white dark:bg-[#0a0a0a] p-8 rounded-3xl border-b-4 border-brand shadow-sm">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Launch Sites</p>
+                            <h3 class="text-3xl font-semibold">08</h3>
+                        </div>
+                        <div class="bg-white dark:bg-[#0a0a0a] p-8 rounded-3xl border-b-4 border-black dark:border-white shadow-sm">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Pilot Rank</p>
+                            <h3 class="text-xl font-semibold uppercase text-brand">Blue Wing</h3>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
+                        <div class="xl:col-span-2 space-y-8">
+                            <div class="bg-white dark:bg-[#0a0a0a] rounded-[2rem] p-8 border border-gray-200 dark:border-gray-800">
+                                <h2 class="text-xl font-semibold uppercase mb-8">Live Flight Map</h2>
+                                <div class="relative w-full h-64 bg-gray-100 dark:bg-white/5 rounded-2xl overflow-hidden group">
+                                    <img src="images/map.jpeg" class="w-full h-full object-cover opacity-50 grayscale-0 group-hover:grayscale transition-all duration-700">
+                                    <div class="absolute top-1/2 left-1/3 w-4 h-4 bg-brand rounded-full shadow-[0_0_15px_#3A86FF] border-2 border-white animate-bounce"></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white dark:bg-[#0a0a0a] rounded-[2rem] p-8 border border-gray-200 dark:border-gray-800">
+                                <h2 class="text-xl font-semibold uppercase tracking-tighter mb-6">Pilot Skill Performance</h2>
+                                <div class="space-y-6">
+                                    <div>
+                                        <div class="flex justify-between text-xs font-semibold mb-2 uppercase tracking-widest text-gray-400">
+                                            <span>Thermal Mastering</span><span>85%</span>
+                                        </div>
+                                        <div class="h-2 w-full bg-gray-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                            <div class="h-full bg-brand rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs font-semibold mb-2 uppercase tracking-widest text-gray-400">
+                                            <span>Landing Accuracy</span><span>92%</span>
+                                        </div>
+                                        <div class="h-2 w-full bg-gray-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                            <div class="h-full bg-black dark:bg-white rounded-full" style="width: 92%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand rounded-[2rem] p-10 text-white shadow-2xl flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold uppercase text-white/60 text-[10px] mb-2">Live Weather Data</h4>
+                                <h3 class="text-3xl font-semibold mb-8 leading-tight">Clear To Launch</h3>
+                                <div class="space-y-6">
+                                    <div class="flex justify-between border-b border-white/20 pb-4">
+                                        <span class="text-sm font-medium opacity-80">Wind Speed</span>
+                                        <span class="text-sm font-bold">12 km/h NW</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-white/20 pb-4">
+                                        <span class="text-sm font-medium opacity-80">Visibility</span>
+                                        <span class="text-sm font-bold">Excellent</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="mt-10 w-full py-4 bg-white text-brand rounded-2xl font-bold text-xs uppercase hover:bg-black hover:text-white transition-all">Detailed Aero Report</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-logs" class="page-content space-y-8">
+                    <h2 class="text-3xl font-semibold uppercase tracking-tighter">Mission History</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                        <div class="bg-white dark:bg-[#0a0a0a] rounded-3xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="images/img7.avif" class="w-full h-full object-cover">
+                                <div class="absolute top-4 left-4 bg-black/80 text-white px-3 py-1 rounded-lg text-[10px] font-bold uppercase">Alpine Pro</div>
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between mb-4">
+                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Oct 12, 2025</span>
+                                    <span class="text-[10px] font-bold text-brand uppercase tracking-widest">45 Min</span>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-4">Matterhorn Descent</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Solid thermals off the South face. Peak altitude reached 3,200m before valley landing.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-[#0a0a0a] rounded-3xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="images/img5.avif" class="w-full h-full object-cover">
+                                <div class="absolute top-4 left-4 bg-brand text-white px-3 py-1 rounded-lg text-[10px] font-bold uppercase">Coastal Glide</div>
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between mb-4">
+                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Sep 28, 2025</span>
+                                    <span class="text-[10px] font-bold text-brand uppercase tracking-widest">1.2 hrs</span>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-4">Pacific Ridge Run</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Stable laminar flow from the ocean. Practiced 360-degree turns and high wing-overs over the cliffs.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-[#0a0a0a] rounded-3xl border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="images/img6.webp" class="w-full h-full object-cover">
+                                <div class="absolute top-4 left-4 bg-black dark:bg-white text-white dark:text-black px-3 py-1 rounded-lg text-[10px] font-bold uppercase">Acro Session</div>
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between mb-4">
+                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Aug 15, 2025</span>
+                                    <span class="text-[10px] font-bold text-brand uppercase tracking-widest">32 Min</span>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-4">Dolomites Spiral</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Intense acrobatic session. Executed perfect SAT maneuvers and deep spirals above the valley floor.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-flights" class="page-content space-y-10">
+                    <h2 class="text-3xl font-semibold uppercase tracking-tighter">My Flight Plan</h2>
+
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+                        <!-- Next Mission -->
+                        <div class="bg-white dark:bg-[#0a0a0a] rounded-[2rem] p-10 border border-gray-200 dark:border-gray-800 relative overflow-hidden">
+                            <h3 class="text-xl font-semibold uppercase mb-8">Next Mission</h3>
+                            <div class="flex flex-col md:flex-row gap-8 items-center">
+                                <div class="w-full md:w-48 h-40 rounded-[1.5rem] overflow-hidden shadow-2xl relative">
+                                    <img src="images\img9.webp" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-brand/20 mix-blend-overlay"></div>
+                                </div>
+                                <div class="flex-1 space-y-4">
+                                    <p class="text-brand font-bold text-xs uppercase tracking-widest">Sunday, May 24th • 08:00 AM</p>
+                                    <h4 class="text-2xl font-semibold">Eagle Peak Tandem Flight</h4>
+                                    <p class="text-sm text-gray-500 font-medium"><i class="fas fa-location-arrow text-brand mr-2"></i> Launch Point Alpha-7</p>
+                                    <div class="pt-4 flex gap-4">
+                                        <button class="rounded-xl px-6 py-2.5 bg-brand text-white font-semibold text-xs uppercase shadow-brand/30">Briefing</button>
+                                        <button class="rounded-xl px-6 py-2.5 bg-transparent border border-gray-200 dark:border-gray-700 font-semibold text-xs uppercase">Modify</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Checklist -->
+                        <div class="bg-white dark:bg-[#0a0a0a] rounded-[2rem] p-10 border border-gray-200 dark:border-gray-800">
+                            <h3 class="text-xl font-semibold uppercase mb-8">Pre-Flight Readiness</h3>
+                            <div class="space-y-4">
+                                <label class="flex items-center gap-4 p-4 bg-gray-100 dark:bg-white/5 rounded-2xl cursor-pointer hover:border-brand border border-transparent transition-all">
+                                    <input type="checkbox" checked class="w-5 h-5 accent-brand">
+                                    <span class="text-sm font-semibold">Wing and Harness Physical Inspection</span>
+                                </label>
+                                <label class="flex items-center gap-4 p-4 bg-gray-100 dark:bg-white/5 rounded-2xl cursor-pointer hover:border-brand border border-transparent transition-all">
+                                    <input type="checkbox" checked class="w-5 h-5 accent-brand">
+                                    <span class="text-sm font-semibold">Reserve Chute Recertification Check</span>
+                                </label>
+                                <label class="flex items-center gap-4 p-4 bg-gray-100 dark:bg-white/5 rounded-2xl cursor-pointer hover:border-brand border border-transparent transition-all">
+                                    <input type="checkbox" class="w-5 h-5 accent-brand">
+                                    <span class="text-sm font-semibold">4K GoPro Battery & Storage Sync</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Forecast -->
+                        <div class="bg-white dark:bg-[#0a0a0a] rounded-[2rem] p-10 border border-gray-200 dark:border-gray-800 lg:col-span-2">
+                            <h3 class="text-xl font-semibold uppercase mb-8">3-Day Aero Forecast</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="bg-gray-50 dark:bg-white/5 p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Tomorrow</p>
+                                    <div class="flex items-center justify-between">
+                                        <i class="fas fa-sun text-2xl text-yellow-500"></i>
+                                        <span class="text-xl font-semibold">22°C</span>
+                                    </div>
+                                    <p class="text-xs mt-4 font-medium">Perfect thermals expected after 10:00.</p>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-white/5 p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Tue, May 26</p>
+                                    <div class="flex items-center justify-between">
+                                        <i class="fas fa-cloud-sun text-2xl text-orange-400"></i>
+                                        <span class="text-xl font-semibold">19°C</span>
+                                    </div>
+                                    <p class="text-xs mt-4 font-medium">Gusty winds at high altitude. Caution advised.</p>
+                                </div>
+                                <div class="bg-gray-50 dark:bg-white/5 p-6 rounded-2xl border border-gray-100 dark:border-gray-800">
+                                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Wed, May 27</p>
+                                    <div class="flex items-center justify-between">
+                                        <i class="fas fa-cloud-showers-heavy text-2xl text-blue-400"></i>
+                                        <span class="text-xl font-semibold">15°C</span>
+                                    </div>
+                                    <p class="text-xs mt-4 font-medium">Grounding expected due to rain system.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="page-media" class="page-content space-y-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+                        <h2 class="text-3xl font-semibold uppercase tracking-tighter">Aerial Footage Vault</h2>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">12.4 GB / 50 GB Used</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Video 1 -->
+                        <div class="group bg-white dark:bg-[#0a0a0a] rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-2xl transition-all">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="images\img11.jpeg" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center shadow-lg"><i class="fas fa-play ml-1"></i></button>
+                                </div>
+                                <span class="absolute bottom-4 right-4 bg-brand text-white text-[9px] font-bold px-2 py-1 rounded">4K 03:45</span>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="font-semibold text-sm mb-1 uppercase tracking-tight">Acrobatic Spiral Session</h4>
+                                <p class="text-[10px] text-gray-400 uppercase font-bold">Recorded: May 12, 2025</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 1 -->
+                        <div class="group bg-white dark:bg-[#0a0a0a] rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-2xl transition-all">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="images\img6.webp" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center shadow-lg"><i class="fas fa-image"></i></button>
+                                </div>
+                                <span class="absolute bottom-4 right-4 bg-black/60 text-white text-[9px] font-bold px-2 py-1 rounded">RAW IMAGE</span>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="font-semibold text-sm mb-1 uppercase tracking-tight">Sunset Ridge Portrait</h4>
+                                <p class="text-[10px] text-gray-400 uppercase font-bold">6000x4000 • 24MB</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 2 -->
+                        <div class="group bg-white dark:bg-[#0a0a0a] rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-2xl transition-all">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="images/img4.avif" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center shadow-lg"><i class="fas fa-image"></i></button>
+                                </div>
+                                <span class="absolute bottom-4 right-4 bg-black/60 text-white text-[9px] font-bold px-2 py-1 rounded">JPG</span>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="font-semibold text-sm mb-1 uppercase tracking-tight">Lake Geneva Panorama</h4>
+                                <p class="text-[10px] text-gray-400 uppercase font-bold">4500x3000 • 12MB</p>
+                            </div>
+                        </div>
+
+                        <!-- Video 2 -->
+                        <div class="group bg-white dark:bg-[#0a0a0a] rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-2xl transition-all">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="images/img1.avif" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button class="w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center shadow-lg"><i class="fas fa-play ml-1"></i></button>
+                                </div>
+                                <span class="absolute bottom-4 right-4 bg-brand text-white text-[9px] font-bold px-2 py-1 rounded">1080p 05:12</span>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="font-semibold text-sm mb-1 uppercase tracking-tight">Morning Thermal Climb</h4>
+                                <p class="text-[10px] text-gray-400 uppercase font-bold">Recorded: Apr 22, 2025</p>
+                            </div>
+                        </div>
+
+                        <!-- Sync Card -->
+                        <div class="border-2 border-dashed border-gray-200 dark:border-gray-800 rounded-3xl flex flex-col items-center justify-center p-8 text-gray-400 hover:text-brand hover:border-brand cursor-pointer transition-all bg-gray-50/50 dark:bg-white/5">
+                            <i class="fas fa-cloud-upload-alt text-3xl mb-4"></i>
+                            <p class="font-bold text-[10px] uppercase tracking-widest text-center">Sync Flight Data <br>& GoPro Clips</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function showPage(pageId, element) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) targetPage.classList.add('active');
+
+            const titles = {'dashboard': 'Sky Deck Overview', 'flights': 'My Flight Plan', 'logs': 'Mission History', 'media': 'Aerial Footage Vault'};
+            document.getElementById('mainTitle').innerText = titles[pageId] || 'Sky Deck';
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('bg-brand/10', 'text-brand', 'border-brand/20');
+                link.classList.add('text-gray-500', 'dark:text-gray-400', 'border-transparent');
+            });
+            if(element) element.classList.add('bg-brand/10', 'text-brand', 'border-brand/20');
+
+            if (window.innerWidth < 1280) closeSidebar();
+        }
+
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+            document.body.style.overflow = '';
+        }
+
+        hamburgerBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+        // Theme and RTL Logic
+        const toggleTheme = () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('aeroglide-dark', isDark);
+            const icon = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            document.getElementById('desktopThemeIcon').className = icon;
+            document.getElementById('mobileThemeIcon').className = icon;
+        };
+        const toggleRtl = () => {
+            const currentDir = document.documentElement.dir;
+            document.documentElement.dir = currentDir === "rtl" ? "ltr" : "rtl";
+        };
+
+        document.getElementById('desktopDarkToggle').addEventListener('click', toggleTheme);
+        document.getElementById('mobileDarkToggle').addEventListener('click', toggleTheme);
+        document.getElementById('desktopRtlToggle').addEventListener('click', toggleRtl);
+        document.getElementById('mobileRtlToggle').addEventListener('click', toggleRtl);
+
+        if (localStorage.getItem('aeroglide-dark') === 'true') document.documentElement.classList.add('dark');
+    </script>
+</body>
+</html>

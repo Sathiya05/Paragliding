@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Lost in the Clouds - AeroGlide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',    /* Electric Blue */
+                        darkbg: '#050505',   /* Deep Black */
+                        lightbg: '#FFFFFF',  
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4 { font-weight: 600 !important; }
+        
+        .skew-shape { transform: skewX(-12deg); }
+        .unskew-shape { transform: skewX(12deg); }
+
+        /* Floating Animation for the 404 Text */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) skewX(-12deg); }
+            50% { transform: translateY(-20px) skewX(-12deg); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        /* Cloud Drift Animation */
+        @keyframes drift {
+            from { transform: translateX(-10%); }
+            to { transform: translateX(10%); }
+        }
+        .animate-drift { animation: drift 20s linear infinite alternate; }
+    </style>
+</head>
+
+
+    <main class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="images\img17.avif" 
+                 alt="Mountain Mist" class="w-full h-full object-cover opacity-40 dark:opacity-20 ">
+            <div class="absolute inset-0 "></div>
+        </div>
+
+       
+
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-brand/20 rounded-full blur-[100px] md:blur-[120px] pointer-events-none animate-drift"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-brand/10 rounded-full blur-[100px] md:blur-[120px] pointer-events-none animate-drift" style="animation-delay: -5s;"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10 py-20">
+            <div class="relative inline-block mb-4 md:mb-8">
+                <h1 class="text-[8rem] sm:text-[12rem] md:text-[18rem] font-bold uppercase tracking-tighter leading-none text-brand drop-shadow-[0_0_20px_rgba(58,134,255,0.4)] animate-float select-none">
+                    404
+                </h1>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-2/3 h-2 bg-brand/20 blur-xl rounded-full"></div>
+            </div>
+
+            <div class="max-w-2xl mx-auto space-y-6">
+                <h2 class="text-3xl md:text-5xl font-semibold uppercase tracking-tighter text-black dark:text-white leading-tight">
+                    Lost in the <br> <span class="text-brand">Clouds.</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 font-medium leading-relaxed max-w-lg mx-auto text-sm md:text-base">
+                    Your flight path has drifted into uncharted territory. The page you seek has either been relocated or never cleared for takeoff.
+                </p>
+
+                <div class="pt-8 md:pt-12 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
+                    <a href="index.html" class="rounded-xl w-full sm:w-auto px-10 py-5 bg-brand text-white font-bold text-xs uppercase tracking-[0.2em] shadow-2xl shadow-brand/30 hover:bg-black dark:hover:bg-white dark:hover:text-black transition-all group">
+                        <span class="flex items-center justify-center gap-3">
+                            <i class="fas fa-home group-hover:-translate-y-1 transition-transform"></i> Return to Base
+                        </span>
+                    </a>
+                    
+                    <a href="contact.html" class="rounded-xl w-full sm:w-auto px-10 py-5 bg-white/10 dark:bg-white/5 backdrop-blur-md border-2 border-brand/30 text-brand font-bold text-xs uppercase tracking-[0.2em] hover:border-brand hover:bg-brand hover:text-white transition-all">
+                        <span class="flex items-center justify-center gap-3">
+                            <i class="fas fa-headset"></i> Contact Dispatch
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // THEME TOGGLE Logic
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('aeroglide-dark', isDark);
+            updateThemeIcon(isDark);
+        }
+
+        function updateThemeIcon(isDark) {
+            const themeIcon = document.getElementById("themeIcon");
+            if (themeIcon) {
+                themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+
+        if (localStorage.getItem('aeroglide-dark') === 'true') {
+            document.documentElement.classList.add('dark');
+            updateThemeIcon(true);
+        } else {
+            updateThemeIcon(false);
+        }
+    </script>
+
+</body>
+</html>

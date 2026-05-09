@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact AeroGlide | Reach the Skies</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',    /* Electric Blue */
+                        darkbg: '#050505',   /* Deep Black */
+                        lightbg: '#FFFFFF',  /* Pure White */
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4 { font-weight: 600 !important; }
+        .skew-shape { transform: skewX(-12deg); }
+        .unskew-shape { transform: skewX(12deg); }
+        
+        .faq-content { max-height: 0; transition: max-height 0.4s ease-out, padding 0.3s ease; overflow: hidden; }
+        .faq-content.open { max-height: 500px; padding-top: 1rem; }
+    </style>
+</head>
+
+<body class="bg-lightbg dark:bg-darkbg text-black dark:text-white transition-colors duration-300 antialiased selection:bg-brand selection:text-white">
+
+    <div id="navbar"></div>
+
+    <section class="relative min-h-screen flex items-center justify-center py-20 overflow-hidden bg-black text-center">
+        <!-- Animated Wind Lines -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none z-10">
+            <div class="wind-line" style="top:25%;width:90px;animation-delay:0s;"></div>
+            <div class="wind-line" style="top:48%;width:140px;animation-delay:1.4s;"></div>
+            <div class="wind-line" style="top:72%;width:65px;animation-delay:2.8s;"></div>
+        </div>
+
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="images/bg2.avif" alt="Mountain peak support" class="w-full h-full object-cover opacity-50">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90"></div>
+            <div class="absolute inset-0 bg-radial-gradient from-transparent to-black/70"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-20 flex flex-col items-center">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center justify-center gap-3 mb-6">
+                    <div class="w-8 h-[1px] bg-brand/50"></div>
+                    <span class="inline-block px-4 py-1.5 rounded-full border border-brand/30 bg-brand/5 backdrop-blur-md text-brand text-[10px] font-bold uppercase tracking-[0.3em]">
+                        Ground Dispatch Center
+                    </span>
+                    <div class="w-8 h-[1px] bg-brand/50"></div>
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-semibold text-white uppercase tracking-tighter leading-[0.95] mb-8">
+                    Radio Check.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">We Copy You.</span>
+                </h1>
+                <p class="text-sm sm:text-base md:text-lg text-gray-400 font-normal leading-relaxed max-w-2xl mx-auto mb-12">
+                    Need a weather briefing, booking adjustment, or gear advice? Our crew is on standby to help you navigate your next flight.
+                </p>
+
+                <!-- Status Badge -->
+                <div class="flex items-center justify-center">
+                    <div class="flex items-center gap-4 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 pr-10 shadow-2xl">
+                        <div class="relative flex items-center justify-center">
+                            <div class="w-3 h-3 bg-green-500 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.6)]"></div>
+                            <div class="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                        </div>
+                        <div class="text-left border-l border-white/10 pl-4">
+                            <p class="text-[9px] font-bold uppercase text-gray-500 tracking-[0.2em] leading-none mb-1.5">System Status</p>
+                            <p class="text-xs font-bold text-white uppercase tracking-tight">Ground Ops Online</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white dark:bg-darkbg relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full  skew-shape translate-x-1/3 pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                
+                <div class="lg:col-span-4 space-y-10">
+                    <div>
+                        <h2 class="text-3xl font-semibold uppercase tracking-tight mb-8">Base <span class="text-brand">Info</span></h2>
+                        <div class="space-y-8">
+                            <div class="flex gap-6 group">
+                                <div class="w-12 h-12 shrink-0 bg-brand/10 flex items-center justify-center text-brand rounded-xl border border-brand/20 group-hover:bg-brand group-hover:text-white transition-all">
+                                    <i class="fas fa-location-dot text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold uppercase text-gray-400 tracking-widest mb-1">Launch Site</h4>
+                                    <p class="text-sm font-semibold">12 Flight Path Way, Peak District<br>Colorado, USA 80401</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 group">
+                                <div class="w-12 h-12 shrink-0 bg-brand/10 flex items-center justify-center text-brand rounded-xl border border-brand/20 group-hover:bg-brand group-hover:text-white transition-all">
+                                    <i class="fas fa-phone-volume text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold uppercase text-gray-400 tracking-widest mb-1">Flight Desk</h4>
+                                    <p class="text-sm font-semibold">+1 (555) AERO-FLY</p>
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase">Daily 07:00 - 19:00</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 group">
+                                <div class="w-12 h-12 shrink-0 bg-brand/10 flex items-center justify-center text-brand rounded-xl border border-brand/20 group-hover:bg-brand group-hover:text-white transition-all">
+                                    <i class="fas fa-paper-plane text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs font-bold uppercase text-gray-400 tracking-widest mb-1">Dispatch Email</h4>
+                                    <p class="text-sm font-semibold">crew@aeroglide.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-gray-100 dark:border-gray-800">
+                        <h4 class="text-[10px] font-bold uppercase text-gray-400 tracking-[0.3em] mb-4">Follow the flight</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-brand hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-brand hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 hover:bg-brand hover:text-white transition-all"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8 bg-gray-50 dark:bg-[#0a0a0a] rounded-3xl p-8 md:p-12 border border-gray-100 dark:border-gray-900 shadow-xl">
+                    <h2 class="text-2xl font-semibold uppercase tracking-tight mb-2">Send a <span class="text-brand">Signal</span></h2>
+                    <p class="text-gray-500 text-sm mb-10 font-medium leading-relaxed">Fill out the flight log below and our ground crew will signal back within 24 hours.</p>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold uppercase text-gray-400 tracking-widest ml-1">Full Name</label>
+                                <input type="text" required placeholder="Pilot/Client Name" 
+                                       class="w-full px-6 py-4 bg-white dark:bg-darkbg border border-gray-200 dark:border-gray-800 rounded-xl outline-none focus:border-brand transition-all font-medium">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-bold uppercase text-gray-400 tracking-widest ml-1">Email Address</label>
+                                <input type="email" required placeholder="name@email.com" 
+                                       class="w-full px-6 py-4 bg-white dark:bg-darkbg border border-gray-200 dark:border-gray-800 rounded-xl outline-none focus:border-brand transition-all font-medium">
+                            </div>
+                        </div>
+                      
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold uppercase text-gray-400 tracking-widest ml-1">Message</label>
+                            <textarea rows="5" required placeholder="Your message to our team..." 
+                                      class="w-full px-6 py-4 bg-white dark:bg-darkbg border border-gray-200 dark:border-gray-800 rounded-xl outline-none focus:border-brand transition-all font-medium resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="rounded-xl w-full py-5 bg-brand text-white font-semibold text-sm uppercase tracking-[0.2em] shadow-lg shadow-brand/30 hover:bg-black dark:hover:bg-white dark:hover:text-black transition-all group">
+                            <div class=" flex items-center justify-center gap-3">
+                                Dispatch Message <i class="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-50 dark:bg-[#0a0a0a] border-y border-gray-100 dark:border-gray-900 overflow-hidden">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-semibold uppercase tracking-tight mb-4">Pre-Flight <span class="text-brand">Questions</span></h2>
+                <p class="text-gray-600 dark:text-gray-400 font-normal">Common questions before you take the leap.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-1 gap-4">
+                <div class="bg-white dark:bg-darkbg border border-gray-200 dark:border-gray-800 rounded-2xl p-6 md:p-8 cursor-pointer group transition-all" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold pr-8">Do I need any prior experience?</h3>
+                        <i class="fas fa-plus text-brand transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-sm text-gray-500 font-normal leading-relaxed">No experience is required! For tandem flights, you'll be securely attached to a master pilot who handles everything. You just need to be able to take a few steps during launch.</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-darkbg border border-gray-200 dark:border-gray-800 rounded-2xl p-6 md:p-8 cursor-pointer group transition-all" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold pr-8">What happens if the weather is bad?</h3>
+                        <i class="fas fa-plus text-brand transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-sm text-gray-500 font-normal leading-relaxed">Safety is our priority. If wind or visibility conditions are unsafe, we will reschedule your flight for free or provide a full refund of your deposit.</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-darkbg border border-gray-200 dark:border-gray-800 rounded-2xl p-6 md:p-8 cursor-pointer group transition-all" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold pr-8">Can I bring my own GoPro?</h3>
+                        <i class="fas fa-plus text-brand transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-sm text-gray-500 font-normal leading-relaxed">Yes, as long as it is secured with a secondary tether/leash. We also offer a premium 4K media package where the pilot captures your entire flight from multiple angles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white dark:bg-darkbg overflow-hidden">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="text-center mb-16">
+                <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-brand block mb-4">Base Operations</span>
+                <h2 class="text-4xl font-semibold uppercase tracking-tight mb-4">Flight <span class="text-brand">Coordinates</span></h2>
+                <p class="text-gray-500 text-sm font-medium">Locate our ground dispatch and primary launch zones.</p>
+            </div>
+
+            <div class="relative h-[400px] md:h-[500px] lg:h-[600px] w-full rounded-[2rem] overflow-hidden border border-gray-100 dark:border-gray-900 shadow-2xl">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d191885.5026368817!2d-105.3512396!3d39.7562131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b80aa2754d7e9%3A0x6d64931a297e68e4!2sGolden%2C%20CO!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+                    class="w-full h-full invert dark:invert-0 opacity-80" 
+                    style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+                <div class="absolute inset-0 pointer-events-none border border-brand/10 rounded-[2rem]"></div>
+            </div>
+        </div>
+    </section>
+<section class="py-24 bg-white dark:bg-darkbg relative overflow-hidden">
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-brand/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                
+                <div class="group p-8 rounded-[2rem] bg-gray-50 dark:bg-[#0a0a0a] border border-gray-100 dark:border-gray-900 hover:border-brand/40 transition-all duration-500 shadow-sm hover:shadow-2xl flex flex-col h-full">
+                    <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center text-brand text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold uppercase tracking-tight mb-3">Media Vault</h3>
+                    <p class="text-sm font-normal text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                        Lost your flight footage or need raw 4K clips for a project? Our media tech team can recover your sky-high memories.
+                    </p>
+                    <div class="mt-auto">
+                        <a href="mailto:media@aeroglide.com" class="text-xs font-bold uppercase tracking-widest text-brand hover:text-black dark:hover:text-white transition-colors flex items-center gap-2">
+                            Contact Media <i class="fas fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group p-8 rounded-[2rem] bg-brand text-white shadow-[0_20px_50px_rgba(58,134,255,0.3)] transition-all duration-500 flex flex-col h-full">
+                    <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center text-white text-2xl mb-6 group-hover:rotate-12 transition-transform">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold uppercase tracking-tight mb-3">Safety Dispatch</h3>
+                    <p class="text-sm font-normal text-white/80 leading-relaxed mb-6">
+                        Concerned about tomorrow's wind forecast? Get a live update from our meteorological team regarding launch windows.
+                    </p>
+                    <div class="mt-auto">
+                        <a href="tel:+15552376359" class="text-xs font-bold uppercase tracking-widest text-white hover:text-black transition-colors flex items-center gap-2">
+                            Call Dispatch <i class="fas fa-phone text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group p-8 rounded-[2rem] bg-gray-50 dark:bg-[#0a0a0a] border border-gray-100 dark:border-gray-900 hover:border-brand/40 transition-all duration-500 shadow-sm hover:shadow-2xl flex flex-col h-full">
+                    <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center text-brand text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold uppercase tracking-tight mb-3">Partnerships</h3>
+                    <p class="text-sm font-normal text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                        Interested in group bookings, corporate retreats, or sponsorship? Let's discuss how we can take your brand to the clouds.
+                    </p>
+                    <div class="mt-auto">
+                        <a href="mailto:partners@aeroglide.com" class="text-xs font-bold uppercase tracking-widest text-brand hover:text-black dark:hover:text-white transition-colors flex items-center gap-2">
+                            Let's Talk <i class="fas fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+    <script>
+        // FAQ Toggle Logic
+        function toggleFaq(card) {
+            const content = card.querySelector('.faq-content');
+            const icon = card.querySelector('.fa-plus');
+            
+            // Close others
+            document.querySelectorAll('.faq-content').forEach(c => {
+                if(c !== content) {
+                    c.classList.remove('open');
+                    c.parentElement.querySelector('i').classList.remove('rotate-45');
+                }
+            });
+
+            // Toggle current
+            content.classList.toggle('open');
+            icon.classList.toggle('rotate-45');
+        }
+
+        // Form Feedback
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const original = btn.innerHTML;
+            btn.innerHTML = '<div class="unskew-shape">Transmission Sent!</div>';
+            btn.classList.replace('bg-brand', 'bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = original;
+                btn.classList.replace('bg-green-600', 'bg-brand');
+                e.target.reset();
+            }, 3000);
+        });
+    </script>
+
+</body>
+</html>

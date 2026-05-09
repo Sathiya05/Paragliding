@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGlide | Command Center (Admin)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',    /* Electric Blue */
+                        darkbg: '#050505',   /* Deep Black */
+                        lightbg: '#F8FAFF',  
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; font-weight: 400; }
+        h1, h2, h3, h4, h5, h6 { font-weight: 600 !important; }
+        
+        * { transition: all 0.3s ease; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        #sidebar { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        .page-content { display: none; }
+        .page-content.active { display: block; animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .skew-box { transform: skewX(-10deg); }
+        .unskew-box { transform: skewX(10deg); }
+
+        /* RTL Alignment Helpers */
+        html[dir="rtl"] .ml-3 { margin-left: 0; margin-right: 0.75rem; }
+        html[dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+    </style>
+</head>
+
+<body class="antialiased overflow-x-hidden bg-lightbg dark:bg-darkbg text-black dark:text-white">
+
+    <div id="overlay" class="fixed inset-0 bg-black/60 backdrop-blur-md z-40 hidden transition-opacity duration-300"></div>
+
+    <div class="flex h-screen overflow-hidden relative">
+
+        <aside id="sidebar" class="fixed xl:static inset-y-0 left-0 w-80 flex-shrink-0 bg-white dark:bg-[#0a0a0a] shadow-2xl xl:shadow-none flex flex-col h-full border-r border-gray-200 dark:border-gray-800 z-50 transform -translate-x-full xl:translate-x-0">
+            
+            <div class="px-8 pt-10 pb-8 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                  <a href="index.html" class="flex items-center gap-3 group shrink-0 relative z-[100]">
+          <div class="relative flex items-center justify-center w-10 h-10 bg-[#3A86FF] rounded-xl transform transition-transform duration-300 shadow-[0_0_15px_rgba(58,134,255,0.4)]">
+            <i class="fas fa-wind text-white text-xl transition-transform duration-300"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold tracking-tighter uppercase text-black dark:text-white">
+              AERO<span class="text-[#3A86FF]">GLIDE</span>
+            </span>
+            <span class="text-[9px] tracking-[0.3em] uppercase text-gray-500 dark:text-gray-400 font-bold leading-none mt-1">Tandem Flights</span>
+          </div>
+        </a>
+                <button id="closeSidebarBtn" class="xl:hidden text-brand"><i class="fas fa-times text-xl"></i></button>
+            </div>
+
+            <div class="xl:hidden p-6 border-b border-gray-100 dark:border-gray-800 space-y-6">
+                <div class="flex items-center gap-4 bg-gray-50 dark:bg-white/5 p-4 rounded-2xl">
+                    <div class="w-12 h-12 rounded-full bg-brand/20 flex items-center justify-center text-brand border-2 border-brand">
+                        <i class="fas fa-user-tie text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-brand uppercase tracking-widest">Administrator</p>
+                        <p class="font-semibold text-sm">Chief Ops</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="mobileRtlToggle" class="flex-1 py-3 rounded-xl bg-gray-100 dark:bg-white/10 text-brand font-bold text-xs uppercase border border-gray-200 dark:border-gray-800">RTL</button>
+                    <button id="mobileDarkToggle" class="flex-1 py-3 rounded-xl bg-gray-100 dark:bg-white/10 text-brand font-bold text-xs uppercase border border-gray-200 dark:border-gray-800">
+                        <i id="mobileThemeIcon" class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <nav id="sidebar-nav" class="mt-4 flex-1 px-4 space-y-2 overflow-y-auto no-scrollbar">
+                <a href="javascript:void(0)" onclick="showPage('overview', this)" class="nav-link flex items-center px-4 py-4 rounded-xl bg-brand/10 text-brand border border-brand/20">
+                    <i class="fas fa-chart-line w-6 text-lg"></i>
+                    <span class="ml-3 font-semibold">Command Overview</span>
+                </a>
+                
+                <a href="javascript:void(0)" onclick="showPage('bookings', this)" class="nav-link flex items-center p-4 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#111] hover:text-brand transition-all">
+                    <i class="fas fa-calendar-check w-6 text-lg"></i>
+                    <span class="ml-3 font-medium">Manage Bookings</span>
+                </a>
+
+                <a href="javascript:void(0)" onclick="showPage('pilots', this)" class="nav-link flex items-center px-4 py-4 text-sm text-gray-500 dark:text-gray-400 rounded-xl hover:bg-gray-100 dark:hover:bg-[#111] hover:text-brand">
+                    <i class="fas fa-users-gear w-6 text-lg"></i>
+                    <span class="ml-3 font-medium">Pilot Fleet</span>
+                </a>
+
+                <a href="javascript:void(0)" onclick="showPage('settings', this)" class="nav-link flex items-center px-4 py-4 text-sm text-gray-500 dark:text-gray-400 rounded-xl hover:bg-gray-100 dark:hover:bg-[#111] hover:text-brand">
+                    <i class="fas fa-sliders w-6 text-lg"></i>
+                    <span class="ml-3 font-medium">System Settings</span>
+                </a>
+
+                <div class="pt-8 border-t border-gray-100 dark:border-gray-800 mx-4 mt-auto mb-8">
+                    <a href="login.html" class="flex items-center px-4 py-4 text-sm font-semibold text-red-500 rounded-xl hover:bg-red-500/10">
+                        <i class="fas fa-power-off w-6"></i>
+                        <span class="ml-3">Secure Logout</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 flex flex-col overflow-y-auto w-full">
+            
+            <header class="bg-white/80 dark:bg-darkbg/80 backdrop-blur-xl border-b border-gray-200 dark:border-gray-800 px-6 py-5 sticky top-0 z-30 flex items-center justify-between">
+                <h1 id="mainTitle" class="text-xl md:text-2xl font-semibold uppercase tracking-tighter">Command Overview</h1>
+
+                <div class="flex items-center gap-4">
+                    <div class="hidden xl:flex items-center gap-4">
+                        <div class="flex items-center bg-gray-100 dark:bg-[#111] p-1 rounded-xl border border-gray-200 dark:border-gray-800">
+                            <button id="desktopRtlToggle" class="w-9 h-9 flex items-center justify-center rounded-lg text-brand hover:bg-white dark:hover:bg-brand dark:hover:text-white transition-all">
+                                <span class="text-[10px] font-bold">RTL</span>
+                            </button>
+                            <button id="desktopDarkToggle" class="w-9 h-9 flex items-center justify-center rounded-lg text-brand hover:bg-white dark:hover:bg-brand dark:hover:text-white transition-all">
+                                <i id="desktopThemeIcon" class="fas fa-moon text-sm"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-3 p-1.5 pr-4 bg-gray-100 dark:bg-[#111] rounded-full border border-gray-200 dark:border-gray-800">
+                            <div class="w-9 h-9 rounded-full bg-brand/10 flex items-center justify-center text-brand border-2 border-brand">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[9px] font-bold uppercase text-brand leading-none">Admin</p>
+                                <p class="text-xs font-semibold dark:text-white">Chief Ops</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="hamburgerBtn" class="xl:hidden w-12 h-12 flex items-center justify-center rounded-xl bg-brand text-white shadow-lg">
+                        <i class="fas fa-bars-staggered text-xl"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="p-6 xl:p-10 max-w-7xl mx-auto w-full space-y-10">
+
+                <div id="page-overview" class="page-content active space-y-10">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                        <div class="bg-white dark:bg-[#0a0a0a] p-8 rounded-3xl border-b-4 border-brand shadow-sm">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Daily Revenue</p>
+                            <h3 class="text-3xl font-semibold">$4,250</h3>
+                        </div>
+                        <div class="bg-white dark:bg-[#0a0a0a] p-8 rounded-3xl border-b-4 border-black dark:border-white shadow-sm">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">New Bookings</p>
+                            <h3 class="text-3xl font-semibold">12</h3>
+                        </div>
+                        <div class="bg-white dark:bg-[#0a0a0a] p-8 rounded-3xl border-b-4 border-brand shadow-sm">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Active Pilots</p>
+                            <h3 class="text-3xl font-semibold">06/08</h3>
+                        </div>
+                        <div class="bg-white dark:bg-[#0a0a0a] p-8 rounded-3xl border-b-4 border-black dark:border-white shadow-sm">
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Fleet Safety</p>
+                            <h3 class="text-xl font-semibold uppercase text-brand text-green-500">OPTIMAL</h3>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
+                        <div class="xl:col-span-2 space-y-8">
+                            <div class="bg-white dark:bg-[#0a0a0a] rounded-[2rem] p-8 border border-gray-200 dark:border-gray-800">
+                                <h2 class="text-xl font-semibold uppercase mb-8">Flight Traffic (Last 24h)</h2>
+                                <div class="w-full h-64 bg-gray-50 dark:bg-white/5 rounded-2xl flex items-end justify-between p-6 gap-2">
+                                    <div class="bg-brand w-full rounded-t-lg h-[40%]"></div>
+                                    <div class="bg-brand/60 w-full rounded-t-lg h-[65%]"></div>
+                                    <div class="bg-brand w-full rounded-t-lg h-[85%]"></div>
+                                    <div class="bg-brand/60 w-full rounded-t-lg h-[50%]"></div>
+                                    <div class="bg-brand w-full rounded-t-lg h-[95%] shadow-[0_0_15px_rgba(58,134,255,0.4)]"></div>
+                                    <div class="bg-brand/60 w-full rounded-t-lg h-[30%]"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-[#0a0a0a] rounded-[2rem] p-10 border-2 border-brand/20 shadow-2xl flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold uppercase text-brand text-[10px] mb-2 tracking-widest">Fleet Status</h4>
+                                <h3 class="text-3xl font-semibold mb-8 leading-tight">Fleet <br> Ready</h3>
+                                <div class="space-y-6">
+                                    <div class="flex justify-between border-b border-gray-100 dark:border-gray-800 pb-4">
+                                        <span class="text-sm font-medium text-gray-500">Paragliders</span>
+                                        <span class="text-sm font-bold">12 OK</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-gray-100 dark:border-gray-800 pb-4">
+                                        <span class="text-sm font-medium text-gray-500">Hang Gliders</span>
+                                        <span class="text-sm font-bold">4 OK</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm font-medium text-gray-500">Reserve Chutes</span>
+                                        <span class="text-sm font-bold text-green-500">ALL SYNCED</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="mt-10 w-full py-4 bg-brand text-white rounded-2xl font-bold text-xs uppercase hover:bg-black transition-colors">Inspection Logs</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-bookings" class="page-content space-y-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+                        <h2 class="text-3xl font-semibold uppercase tracking-tighter">Active Bookings</h2>
+                        <div class="flex gap-2">
+                             <button class="px-6 py-2.5 bg-brand text-white font-semibold text-xs uppercase rounded-xl">Pending (3)</button>
+                             <button class="px-6 py-2.5 bg-gray-100 dark:bg-white/5 font-semibold text-xs uppercase rounded-xl">Confirmed</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-[#0a0a0a] rounded-3xl border border-gray-200 dark:border-gray-800 overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-gray-100 dark:border-gray-800">
+                                    <th class="p-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">Date/Time</th>
+                                    <th class="p-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">Client</th>
+                                    <th class="p-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">Flight Type</th>
+                                    <th class="p-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">Pilot</th>
+                                    <th class="p-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-gray-50 dark:border-gray-900 hover:bg-gray-50/50 dark:hover:bg-white/5">
+                                    <td class="p-6 font-semibold">May 24, 08:00 AM</td>
+                                    <td class="p-6">Alex Skylar</td>
+                                    <td class="p-6"><span class="px-3 py-1 bg-brand/10 text-brand rounded-full text-[10px] font-bold uppercase">Alpine Tandem</span></td>
+                                    <td class="p-6">Mark "Eagle" V.</td>
+                                    <td class="p-6"><button class="text-brand font-bold uppercase text-xs">Manage</button></td>
+                                </tr>
+                                <tr class="border-b border-gray-50 dark:border-gray-900 hover:bg-gray-50/50 dark:hover:bg-white/5">
+                                    <td class="p-6 font-semibold">May 24, 10:30 AM</td>
+                                    <td class="p-6">Sarah Jenkins</td>
+                                    <td class="p-6"><span class="px-3 py-1 bg-black/10 dark:bg-white/10 text-black dark:text-white rounded-full text-[10px] font-bold uppercase">Coastal Run</span></td>
+                                    <td class="p-6">Unassigned</td>
+                                    <td class="p-6"><button class="bg-brand text-white px-4 py-2 rounded-lg font-bold uppercase text-[10px]">Assign</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="page-pilots" class="page-content space-y-10">
+                    <h2 class="text-3xl font-semibold uppercase tracking-tighter">Pilot Management</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                        <div class="bg-white dark:bg-[#0a0a0a] rounded-3xl border border-gray-200 dark:border-gray-800 overflow-hidden group hover:border-brand shadow-sm">
+                            <div class="p-8 flex items-center gap-6">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150" class="w-16 h-16 rounded-2xl object-cover grayscale group-hover:grayscale-0">
+                                <div>
+                                    <h4 class="font-semibold text-lg">Mark "Eagle" V.</h4>
+                                    <p class="text-xs font-bold text-brand uppercase tracking-widest">Master Pilot</p>
+                                </div>
+                            </div>
+                            <div class="px-8 pb-8 flex items-center justify-between">
+                                <span class="flex items-center gap-2 text-[10px] font-bold uppercase text-green-500"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Available</span>
+                                <button class="text-xs font-bold uppercase text-gray-400 hover:text-brand">Roster Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="page-settings" class="page-content space-y-10">
+                    <h2 class="text-3xl font-semibold uppercase tracking-tighter">System Console</h2>
+                    <div class="max-w-3xl bg-white dark:bg-[#0a0a0a] rounded-[2rem] border border-gray-200 dark:border-gray-800 p-10 space-y-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-6">Operations Status</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <label class="flex items-center justify-between p-4 bg-gray-100 dark:bg-white/5 rounded-2xl cursor-pointer">
+                                    <span class="text-sm font-semibold">Enable Public Bookings</span>
+                                    <input type="checkbox" checked class="w-10 h-6 accent-brand">
+                                </label>
+                                <label class="flex items-center justify-between p-4 bg-gray-100 dark:bg-white/5 rounded-2xl cursor-pointer">
+                                    <span class="text-sm font-semibold">Auto-Assign Pilots</span>
+                                    <input type="checkbox" class="w-10 h-6 accent-brand">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // NAVIGATION LOGIC
+        function showPage(pageId, element) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) targetPage.classList.add('active');
+
+            const titles = {
+                'overview': 'Command Overview',
+                'bookings': 'Manage Bookings',
+                'pilots': 'Pilot Fleet',
+                'settings': 'System Settings'
+            };
+            document.getElementById('mainTitle').innerText = titles[pageId] || 'Command Center';
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('bg-brand/10', 'text-brand', 'border-brand/20');
+                link.classList.add('text-gray-500', 'dark:text-gray-400', 'border-transparent');
+            });
+            if(element) element.classList.add('bg-brand/10', 'text-brand', 'border-brand/20');
+
+            if (window.innerWidth < 1280) closeSidebar();
+        }
+
+        // SIDEBAR CONTROLS
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+            document.body.style.overflow = '';
+        }
+
+        hamburgerBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+        // DARK MODE & RTL
+        const toggleTheme = () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('aeroglide-dark', isDark);
+            const icons = [document.getElementById('desktopThemeIcon'), document.getElementById('mobileThemeIcon')];
+            icons.forEach(icon => { if(icon) icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon'; });
+        };
+        const toggleRtl = () => {
+            const currentDir = document.documentElement.dir;
+            document.documentElement.dir = currentDir === "rtl" ? "ltr" : "rtl";
+        };
+
+        document.getElementById('desktopDarkToggle').addEventListener('click', toggleTheme);
+        document.getElementById('mobileDarkToggle').addEventListener('click', toggleTheme);
+        document.getElementById('desktopRtlToggle').addEventListener('click', toggleRtl);
+        document.getElementById('mobileRtlToggle').addEventListener('click', toggleRtl);
+
+        if (localStorage.getItem('aeroglide-dark') === 'true') {
+            document.documentElement.classList.add('dark');
+            document.getElementById('desktopThemeIcon').className = 'fas fa-sun';
+            document.getElementById('mobileThemeIcon').className = 'fas fa-sun';
+        }
+    </script>
+</body>
+</html>

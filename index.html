@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroGlide | Tandem Flights</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="tailwind.js"></script>
+                  <link rel="icon" href="images\logo.png">
+
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#3A86FF',    /* Electric Blue */
+                        darkbg: '#050505',   /* Deep Black */
+                        lightbg: '#FFFFFF',  /* Pure White */
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        
+        /* Custom skewed shapes for speed aesthetic */
+        .skew-shape { transform: skewX(-12deg); }
+        .unskew-shape { transform: skewX(12deg); }
+
+        /* Elegant Linear & Mesh Gradient Background with Black Overlay */
+        .hero-mesh-bg {
+            background-color: #ffffff;
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.1)),
+                linear-gradient(135deg, rgba(58, 134, 255, 0.08) 0%, rgba(255, 255, 255, 0) 50%, rgba(58, 134, 255, 0.04) 100%),
+                radial-gradient(at 0% 0%, rgba(58, 134, 255, 0.05) 0px, transparent 50%);
+        }
+        .dark .hero-mesh-bg {
+            background-color: #050505;
+            background-image: 
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+                linear-gradient(135deg, rgba(58, 134, 255, 0.15) 0%, rgba(5, 5, 5, 0) 50%, rgba(0, 0, 0, 0.4) 100%),
+                radial-gradient(at 0% 0%, rgba(58, 134, 255, 0.1) 0px, transparent 50%);
+        }
+    </style>
+</head>
+
+<body class="bg-lightbg dark:bg-darkbg text-black dark:text-white transition-colors duration-300 antialiased selection:bg-brand selection:text-white">
+
+    <div id="navbar"></div>
+
+ <section class="relative min-h-screen flex items-center pt-24 pb-16 lg:pt-32 lg:pb-0 overflow-hidden transition-colors duration-500 border-b border-gray-100 dark:border-gray-900">
+    
+    <!-- BG Image & Gradient -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&auto=format&fit=crop&q=80" 
+             alt="Mountains" 
+             class="w-full h-full object-cover  scale-105">
+        <div class="absolute inset-0 bg-black/30 "></div>
+        <div class="absolute inset-0 "></div>
+    </div>
+
+    <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-brand/10 rounded-full  pointer-events-none z-0"></div>
+
+    <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            <div class="max-w-2xl text-center lg:text-left order-1">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-brand/30 bg-brand/5 dark:bg-brand/10 backdrop-blur-md mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand animate-ping"></span>
+                    <span class="text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] text-white dark:text-white">Booking Open for Summer</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-white dark:text-white mb-6 uppercase tracking-tighter">
+                    Touch <br class="hidden lg:block">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">The Sky.</span>
+                </h1>
+
+                <p class="text-base sm:text-lg md:text-xl text-gray-200 dark:text-gray-300 mb-8 lg:mb-10 leading-relaxed font-normal">
+                    Experience the ultimate freedom. Fly tandem with world-class pilots over breathtaking mountain landscapes. No experience required.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5">
+                    <a href="packages.html" class=" w-full rounded-xl sm:w-auto px-8 py-4 bg-brand text-white font-medium text-sm uppercase tracking-widest hover:bg-black dark:hover:bg-white dark:hover:text-black shadow-[0_0_20px_rgba(58,134,255,0.4)] transition-all duration-300 group">
+                        <div class=" flex items-center justify-center gap-3">
+                            Book Your Flight <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </a>
+                    <a href="#video" class="rounded-xl w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white dark:border-white text-white dark:text-white font-medium text-sm uppercase tracking-widest hover:bg-brand hover:border-brand hover:text-white dark:hover:bg-brand dark:hover:border-brand dark:hover:text-white transition-all duration-300 group">
+                        <div class=" flex items-center justify-center gap-3">
+                            <i class="fas fa-play text-white group-hover:text-white transition-colors"></i> Watch Video
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative w-full h-[280px] sm:h-[400px] lg:h-[500px] mt-6 lg:mt-0 order-2">
+                <div class="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-16 h-16 sm:w-24 sm:h-24 border-t-4 border-l-4 border-brand z-20"></div>
+                <div class="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-16 h-16 sm:w-24 sm:h-24 border-b-4 border-r-4 border-brand z-20"></div>
+                
+                <div class="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl z-10 group border-4 border-white dark:border-[#111]">
+                    <div class="absolute inset-0 bg-brand/10 mix-blend-overlay z-10"></div>
+                    <img src="images/img1.webp" alt="Paraglider over mountains" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                </div>
+                
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 sm:bottom-6 sm:-left-6 lg:bottom-10 lg:-left-10 bg-white dark:bg-[#111] p-3 sm:p-5 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border border-gray-100 dark:border-gray-800 flex items-center gap-3 sm:gap-4 z-30 w-max min-w-[180px]">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand/10 flex items-center justify-center text-brand text-lg sm:text-xl">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-black dark:text-white text-sm sm:text-lg leading-none">Perfect</h4>
+                        <p class="text-[8px] sm:text-[10px] text-gray-500 uppercase tracking-widest font-bold mt-1">Flying Conditions</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="py-16 bg-lightbg dark:bg-darkbg">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="bg-white dark:bg-[#111] shadow-2xl rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 border-b-4 border-brand">
+                <div class="text-center border-r border-gray-100 dark:border-gray-800 last:border-0 md:last:border-r-0">
+                    <i class="fas fa-plane-departure text-brand text-3xl mb-4"></i>
+                    <h4 class="text-3xl lg:text-4xl font-medium text-black dark:text-white tracking-tighter">15k+</h4>
+                    <p class="text-[11px] font-normal uppercase tracking-widest text-gray-500 mt-2">Flights Completed</p>
+                </div>
+                <div class="text-center border-r border-gray-100 dark:border-gray-800 md:last:border-r-0">
+                    <i class="fas fa-shield-alt text-brand text-3xl mb-4"></i>
+                    <h4 class="text-3xl lg:text-4xl font-medium text-black dark:text-white tracking-tighter">100%</h4>
+                    <p class="text-[11px] font-normal uppercase tracking-widest text-gray-500 mt-2">Safety Record</p>
+                </div>
+                <div class="text-center border-r border-gray-100 dark:border-gray-800 md:border-r-0 lg:border-r">
+                    <i class="fas fa-medal text-brand text-3xl mb-4"></i>
+                    <h4 class="text-3xl lg:text-4xl font-medium text-black dark:text-white tracking-tighter">20+</h4>
+                    <p class="text-[11px] font-normal uppercase tracking-widest text-gray-500 mt-2">Master Pilots</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-video text-brand text-3xl mb-4"></i>
+                    <h4 class="text-3xl lg:text-4xl font-medium text-black dark:text-white tracking-tighter">4K</h4>
+                    <p class="text-[11px] font-normal uppercase tracking-widest text-gray-500 mt-2">Included Media</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section class="py-24 bg-lightbg dark:bg-darkbg">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight text-black dark:text-white mb-4">Choose Your <span class="text-brand">Adventure</span></h2>
+                <p class="text-gray-600 dark:text-gray-400 font-normal leading-relaxed">From serene, scenic glides to adrenaline-pumping acrobatic spirals, we have an experience tailored for your comfort level.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                
+                <div class="group relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-[#111] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(58,134,255,0.15)] flex flex-col w-full">
+                    <div class="h-64 overflow-hidden relative shrink-0">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="images\img4.avif" alt="Paragliding" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 z-20 bg-brand text-white px-3 py-1 rounded-full text-xs font-medium uppercase">Most Popular</div>
+                    </div>
+                    <div class="p-8 relative flex-grow flex flex-col">
+                        <div class="absolute top-0 left-0 w-0 h-1 bg-brand transition-all duration-500 group-hover:w-full"></div>
+                        <h3 class="text-2xl font-medium uppercase tracking-tight text-black dark:text-white mb-3">Tandem Paragliding</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 font-normal leading-relaxed mb-6 flex-grow">A smooth, seated flight offering breathtaking panoramic views. Perfect for beginners and sightseers.</p>
+                        <a href="packages.html#missions" class="inline-flex items-center text-brand font-medium uppercase text-sm tracking-widest group-hover:text-black dark:group-hover:text-white transition-colors">
+                            Explore Flight <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-[#111] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(58,134,255,0.15)] flex flex-col w-full">
+                    <div class="h-64 overflow-hidden relative shrink-0">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="images\img6.webp" alt="Hang Gliding" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 relative flex-grow flex flex-col">
+                        <div class="absolute top-0 left-0 w-0 h-1 bg-brand transition-all duration-500 group-hover:w-full"></div>
+                        <h3 class="text-2xl font-medium uppercase tracking-tight text-black dark:text-white mb-3">Hang Power Gliding</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 font-normal leading-relaxed mb-6 flex-grow">Fly face-down like a bird. Experience faster speeds and the raw feeling of true aerodynamic flight.</p>
+                        <a href="packages.html#missions" class="inline-flex items-center text-brand font-medium uppercase text-sm tracking-widest group-hover:text-black dark:group-hover:text-white transition-colors">
+                            Explore Flight <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl bg-[#0a0a0a] transition-all duration-500 hover:-translate-y-2 shadow-lg border border-brand/30 flex flex-col w-full md:col-span-2 lg:col-span-1 md:max-w-md md:mx-auto lg:max-w-none">
+                    <div class="absolute inset-0 opacity-10"></div>
+                    <div class="h-64 overflow-hidden relative shrink-0">
+                        <img src="images\img1.avif" alt="Acrobatic Flight" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 opacity-60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+                    </div>
+                    <div class="p-8 relative z-10 -mt-16 flex-grow flex flex-col">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white mb-4 shadow-[0_0_15px_rgba(58,134,255,0.6)]">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="text-2xl font-medium uppercase tracking-tight text-white mb-3">Acrobatic XTreme</h3>
+                        <p class="text-sm text-gray-400 font-normal leading-relaxed mb-6 flex-grow">For the adrenaline junkies. High G-forces, wing-overs, spirals, and loops. Not for the faint of heart.</p>
+                        <a href="packages.html#missions" class="inline-flex items-center text-brand font-medium uppercase text-sm tracking-widest hover:text-white transition-colors">
+                            Dare to Fly <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+   <section class="py-24 bg-gray-50 dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-gray-900 overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand/5 skew-shape translate-x-1/4 pointer-events-none z-0"></div>
+
+        <div class="container mx-auto px-6 md:px-16 lg:px-24 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-brand font-medium uppercase tracking-[0.2em] text-sm mb-4 block">What To Expect</span>
+                <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight text-black dark:text-white mb-4">Your Flight <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">Journey</span></h2>
+                <p class="text-gray-600 dark:text-gray-400 font-normal leading-relaxed">From the moment you arrive at the launch site to your gentle touchdown, here is exactly how your tandem adventure unfolds.</p>
+            </div>
+
+            <div class="relative">
+                <div class="hidden lg:block absolute top-10 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-transparent via-brand to-transparent z-0 opacity-50"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-8">
+                    
+                    <div class="relative z-10 flex flex-col items-center group">
+                        <div class="w-20 h-20 rounded-2xl rotate-45 bg-white dark:bg-[#111] border border-gray-200 dark:border-gray-800 flex items-center justify-center mb-8 shadow-sm group-hover:border-brand group-hover:shadow-[0_0_20px_rgba(58,134,255,0.3)] transition-all duration-300">
+                            <div class="w-16 h-16 rounded-xl bg-brand/10 flex items-center justify-center -rotate-45">
+                                <i class="fas fa-clipboard-check text-brand text-2xl group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center font-bold text-sm -rotate-45 shadow-[0_0_10px_rgba(58,134,255,0.5)] border-2 border-white dark:border-[#111]">1</div>
+                        </div>
+                        <h3 class="text-xl font-medium uppercase tracking-tight text-black dark:text-white mb-3 text-center">Briefing & Gear</h3>
+                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400 text-center leading-relaxed">Meet your certified pilot, receive a comprehensive safety briefing, and get strapped securely into your harness.</p>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-center group">
+                        <div class="w-20 h-20 rounded-2xl rotate-45 bg-white dark:bg-[#111] border border-gray-200 dark:border-gray-800 flex items-center justify-center mb-8 shadow-sm group-hover:border-brand group-hover:shadow-[0_0_20px_rgba(58,134,255,0.3)] transition-all duration-300">
+                            <div class="w-16 h-16 rounded-xl bg-brand/10 flex items-center justify-center -rotate-45">
+                                <i class="fas fa-mountain text-brand text-2xl group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center font-bold text-sm -rotate-45 shadow-[0_0_10px_rgba(58,134,255,0.5)] border-2 border-white dark:border-[#111]">2</div>
+                        </div>
+                        <h3 class="text-xl font-medium uppercase tracking-tight text-black dark:text-white mb-3 text-center">The Launch</h3>
+                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400 text-center leading-relaxed">Just a few confident steps forward down the gentle slope, and the wing will smoothly lift you into the air.</p>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-center group">
+                        <div class="w-20 h-20 rounded-2xl rotate-45 bg-white dark:bg-[#111] border border-gray-200 dark:border-gray-800 flex items-center justify-center mb-8 shadow-sm group-hover:border-brand group-hover:shadow-[0_0_20px_rgba(58,134,255,0.3)] transition-all duration-300">
+                            <div class="w-16 h-16 rounded-xl bg-brand/10 flex items-center justify-center -rotate-45">
+                                <i class="fas fa-cloud text-brand text-2xl group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center font-bold text-sm -rotate-45 shadow-[0_0_10px_rgba(58,134,255,0.5)] border-2 border-white dark:border-[#111]">3</div>
+                        </div>
+                        <h3 class="text-xl font-medium uppercase tracking-tight text-black dark:text-white mb-3 text-center">The Flight</h3>
+                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400 text-center leading-relaxed">Sit back comfortably. Enjoy panoramic views, take photos, or ask your pilot for a thrilling acrobatic spiral.</p>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-center group">
+                        <div class="w-20 h-20 rounded-2xl rotate-45 bg-white dark:bg-[#111] border border-gray-200 dark:border-gray-800 flex items-center justify-center mb-8 shadow-sm group-hover:border-brand group-hover:shadow-[0_0_20px_rgba(58,134,255,0.3)] transition-all duration-300">
+                            <div class="w-16 h-16 rounded-xl bg-brand/10 flex items-center justify-center -rotate-45">
+                                <i class="fas fa-flag-checkered text-brand text-2xl group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center font-bold text-sm -rotate-45 shadow-[0_0_10px_rgba(58,134,255,0.5)] border-2 border-white dark:border-[#111]">4</div>
+                        </div>
+                        <h3 class="text-xl font-medium uppercase tracking-tight text-black dark:text-white mb-3 text-center">Touchdown</h3>
+                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400 text-center leading-relaxed">A soft, slow-speed landing on the designated drop zone. Celebrate, high-five your pilot, and grab your 4K media.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="py-24 bg-white dark:bg-[#0a0a0a] border-t border-gray-100 dark:border-gray-900 overflow-hidden">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                
+                <div class="hidden lg:block lg:w-1/2 relative">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand/5 rounded-full blur-3xl z-0"></div>
+                    
+                    <div class="relative z-10 skew-shape overflow-hidden rounded-3xl border-4 border-white dark:border-darkbg shadow-2xl">
+                        <img src="images\img8.avif" alt="Pilot prepping gear" class="w-full h-[500px] object-cover unskew-shape scale-125">
+                        <div class="absolute inset-0"></div>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -right-6 md:bottom-10 md:-right-10 bg-black text-white p-6 rounded-2xl shadow-[0_10px_30px_rgba(58,134,255,0.3)] z-20 border border-gray-800">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-award text-brand text-4xl"></i>
+                            <div>
+                                <h4 class="font-medium text-xl uppercase">Certified</h4>
+                                <p class="text-xs text-gray-400 font-normal tracking-widest">Aero Sports Assoc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left">
+                    <span class="text-brand font-medium uppercase tracking-[0.2em] text-sm mb-4 block">The AeroGlide Standard</span>
+                    <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight text-black dark:text-white mb-10">
+                        Safety. Thrill. <br class="hidden lg:block"> 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-blue-400">Perfection.</span>
+                    </h2>
+                    
+                    <div class="space-y-10 w-full max-w-2xl lg:max-w-none">
+                        
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-brand/10 flex items-center justify-center text-brand text-xl">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-medium text-black dark:text-white mb-3 uppercase tracking-tight">World-Class Instructors</h4>
+                                <p class="text-gray-600 dark:text-gray-400 font-normal text-sm leading-relaxed">Our pilots are internationally certified with a minimum of 10 years commercial tandem flying experience. You are in the safest hands in the sky.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-brand/10 flex items-center justify-center text-brand text-xl">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-medium text-black dark:text-white mb-3 uppercase tracking-tight">4K Action Media Included</h4>
+                                <p class="text-gray-600 dark:text-gray-400 font-normal text-sm leading-relaxed">Relive the adrenaline. Every flight includes a customized SD card with unedited 4K GoPro footage and high-res photos of your experience.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-brand/10 flex items-center justify-center text-brand text-xl">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-medium text-black dark:text-white mb-3 uppercase tracking-tight">State-of-the-Art Gear</h4>
+                                <p class="text-gray-600 dark:text-gray-400 font-normal text-sm leading-relaxed">We utilize only the latest, rigorously inspected wing technology, harnesses, and reserve systems, updated every single season.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="relative py-32 bg-black flex items-center justify-center text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1587565725500-b2f408632a31?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fHBhcmFnbGlkZXIlMjBhbmQlMjBUYW5kZW0lMjBmbGlnaHRzJTIwaGR8ZW58MHx8MHx8fDA%3D')] bg-fixed bg-center bg-cover"></div>
+        <div class="absolute inset-0 "></div>
+
+        <div class="relative z-10 px-6 md:px-16 lg:px-24 container mx-auto">
+            <button class="w-24 h-24 mb-8 bg-brand text-white rounded-full flex items-center justify-center text-3xl mx-auto shadow-[0_0_30px_rgba(58,134,255,0.6)] hover:scale-110 hover:bg-white hover:text-brand transition-all duration-300">
+                <i class="fas fa-play ml-2"></i>
+            </button>
+            <h2 class="text-4xl md:text-6xl font-bold uppercase tracking-tighter text-white mb-6">Ready To <span class="text-brand">Launch?</span></h2>
+            <p class="text-lg text-gray-300 font-normal tracking-wide leading-relaxed mb-10 max-w-xl mx-auto">Watch what it feels like to step off the edge and let the wind catch you.</p>
+            <a href="packages.html" class="inline-block px-10 py-4 bg-white text-black font-medium uppercase text-sm tracking-widest rounded-full hover:bg-brand hover:text-white transition-colors duration-300 shadow-lg">
+                Check Availability
+            </a>
+        </div>
+    </section>
+
+ <section class="py-24 bg-gray-50 dark:bg-[#111]">
+        <div class="container mx-auto px-6 md:px-16 lg:px-24">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <i class="fas fa-quote-right text-4xl text-brand/30 mb-6 block"></i>
+                <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tight text-black dark:text-white mb-4">From The <span class="text-brand">Clouds</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white dark:bg-darkbg p-10 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 relative transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-brand/20">
+                    <div class="flex text-brand text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 font-normal text-sm leading-relaxed mb-8 italic">"Terrifying for the first 3 seconds, and then the most peaceful, incredible experience of my life. My pilot Mark made me feel totally secure."</p>
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <h5 class="text-black dark:text-white font-medium text-sm uppercase">Sarah Jenkins</h5>
+                            <span class="text-brand text-[10px] uppercase font-normal tracking-widest">Paragliding</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand p-10 rounded-2xl shadow-[0_10px_30px_rgba(58,134,255,0.2)] relative text-white transition-all duration-300 lg:transform lg:-translate-y-4 hover:-translate-y-6 hover:shadow-[0_20px_40px_rgba(58,134,255,0.4)]">
+                    <div class="flex text-white text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/90 font-normal text-sm leading-relaxed mb-8 italic">"The acrobatic flight is NO JOKE. I told them to give me the extreme package and they delivered. G-forces, spins, absolute madness. 10/10."</p>
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <h5 class="text-white font-medium text-sm uppercase">David Chen</h5>
+                            <span class="text-black text-[10px] uppercase font-medium tracking-widest">Acrobatic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 lg:col-span-1 bg-white dark:bg-darkbg p-10 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 relative transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-brand/20">
+                    <div class="max-w-md mx-auto lg:max-w-none">
+                        <div class="flex text-brand text-xs mb-6 gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 font-normal text-sm leading-relaxed mb-8 italic">"A dream realized. Hang gliding face down makes you feel like Superman. The video footage they gave me was Hollywood quality."</p>
+                        <div class="flex items-center gap-4">
+                            <div>
+                                <h5 class="text-black dark:text-white font-medium text-sm uppercase">Elena Rodriguez</h5>
+                                <span class="text-brand text-[10px] uppercase font-normal tracking-widest">Hang Gliding</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+
+</body>
+</html>
