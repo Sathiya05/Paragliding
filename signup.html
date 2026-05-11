@@ -62,12 +62,22 @@
             margin-right: 0;
             margin-left: 0.5rem;
         }
+
+        html[dir="rtl"] .fixed-toggle-container {
+            right: auto !important;
+            left: 1.5rem !important;
+        }
+
+        html[dir="rtl"] .mobile-logo-container {
+            left: auto !important;
+            right: 1.5rem !important;
+        }
     </style>
 </head>
 
 <body class="bg-lightbg dark:bg-darkbg text-black dark:text-white antialiased min-h-screen overflow-x-hidden">
 
-    <div class="fixed top-6 right-6 z-50 flex items-center gap-3">
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3 fixed-toggle-container">
         <button id="rtlToggle"
             class="w-10 h-10 flex items-center justify-center rounded-xl bg-white dark:bg-[#111] shadow-lg border border-gray-200 dark:border-gray-800 text-brand font-bold text-[10px]">RTL</button>
         <button id="themeToggle"
@@ -130,7 +140,7 @@
         <div
             class="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-10 relative overflow-y-auto lg:overflow-hidden bg-lightbg dark:bg-darkbg">
 
-            <div class="absolute top-6 left-6 lg:hidden">
+            <div class="absolute top-6 left-6 lg:hidden mobile-logo-container">
                 <a href="index.html" class="flex items-center gap-3 group">
                     <div
                         class="relative flex items-center justify-center w-10 h-10 bg-[#3A86FF] rounded-xl shadow-[0_0_15px_rgba(58,134,255,0.4)]">
@@ -153,10 +163,7 @@
                     <p class="text-gray-500 dark:text-gray-400 font-medium text-xs">Join the global paragliding community.</p>
                 </div>
 
-                <div class="flex p-1 bg-gray-100 dark:bg-[#111] rounded-2xl border border-gray-200 dark:border-gray-800">
-                    <a href="login.html" class="flex-1 py-1.5 text-[10px] text-center font-bold uppercase tracking-widest rounded-xl text-gray-500 hover:text-brand transition-all">Sign In</a>
-                    <button class="flex-1 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-xl bg-white dark:bg-brand text-brand dark:text-white shadow-sm transition-all">Register</button>
-                </div>
+
 
                 <form class="space-y-2 md:space-y-3">
                     <div class="relative group">
@@ -209,6 +216,8 @@
                     </button>
                 </form>
 
+               
+
                 <div class="relative py-1 flex items-center justify-center">
                     <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-200 dark:border-gray-800"></div></div>
                     <span class="relative bg-lightbg dark:bg-darkbg px-4 text-[9px] font-bold text-gray-400 uppercase tracking-[0.3em]">Quick Sync</span>
@@ -224,6 +233,10 @@
                         <span class="text-[10px] font-bold uppercase tracking-widest">Apple</span>
                     </button>
                 </div>
+                 <p class="text-center text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                    Already have a Pilot ID? 
+                    <a href="login.html" class="text-brand hover:underline ms-1">Log In</a>
+                </p>
             </div>
         </div>
     </main>

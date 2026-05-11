@@ -1,5 +1,5 @@
 // AeroGlide Paragliding & Hang Gliding - Fully Responsive Navbar
-(function() {
+(function () {
   function initNavbar() {
     const navbar = document.getElementById("navbar");
     if (!navbar) return;
@@ -171,6 +171,11 @@
       @media (max-width: 1279px) {
         #mobileMenu:not(.hidden) { display: flex; animation: fadeIn 0.3s ease-out forwards; }
       }
+        @media (max-width:1280px){
+        #desktopNav{
+            font-size: 13px;
+}}
+        }
       
       @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px); }
@@ -191,15 +196,15 @@
     const homeMenu = document.getElementById("homeMenu");
     const dashboardBtn = document.getElementById("dashboardBtn");
     const dashboardMenu = document.getElementById("dashboardMenu");
-    
+
     const mobileBtn = document.getElementById("mobileBtn");
     const mobileMenu = document.getElementById("mobileMenu");
     const mobileIcon = document.getElementById("mobileIcon");
-    
+
     const mobileHomeBtn = document.getElementById("mobileHomeBtn");
     const mobileHomeMenu = document.getElementById("mobileHomeMenu");
     const mobileHomeIcon = document.getElementById("mobileHomeIcon");
-    
+
     const mobileDashboardBtn = document.getElementById("mobileDashboardBtn");
     const mobileDashboardMenu = document.getElementById("mobileDashboardMenu");
     const mobileDashboardIcon = document.getElementById("mobileDashboardIcon");
@@ -207,19 +212,19 @@
     // Highlight Active Path logic
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     const allNavLinks = document.querySelectorAll('.nav-link, .mobile-link, .dropdown-link, .mobile-sublink');
-    
+
     allNavLinks.forEach(link => {
       if (link.getAttribute('href') === currentPath) {
         link.classList.add('active');
-        
+
         // Auto-open Desktop menus if active
         if (link.closest('#homeMenu')) homeBtn?.classList.add('active');
         if (link.closest('#dashboardMenu')) dashboardBtn?.classList.add('active');
-        
+
         // Auto-open Mobile menus if active
         if (link.closest('#mobileHomeMenu')) {
           const textSpan = mobileHomeBtn?.querySelector('span');
-          if(textSpan) textSpan.classList.add('active');
+          if (textSpan) textSpan.classList.add('active');
           mobileHomeMenu?.classList.remove('hidden');
           mobileHomeMenu?.classList.add('flex'); // Explicitly forces flex layout
           if (mobileHomeIcon) mobileHomeIcon.style.transform = "rotate(180deg)";
@@ -227,7 +232,7 @@
 
         if (link.closest('#mobileDashboardMenu')) {
           const textSpan = mobileDashboardBtn?.querySelector('span');
-          if(textSpan) textSpan.classList.add('active');
+          if (textSpan) textSpan.classList.add('active');
           mobileDashboardMenu?.classList.remove('hidden');
           mobileDashboardMenu?.classList.add('flex'); // Explicitly forces flex layout
           if (mobileDashboardIcon) mobileDashboardIcon.style.transform = "rotate(180deg)";
@@ -262,13 +267,13 @@
       e.preventDefault();
       const isHidden = mobileHomeMenu.classList.contains("hidden");
       if (isHidden) {
-          mobileHomeMenu.classList.remove("hidden");
-          mobileHomeMenu.classList.add("flex");
-          if (mobileHomeIcon) mobileHomeIcon.style.transform = "rotate(180deg)";
+        mobileHomeMenu.classList.remove("hidden");
+        mobileHomeMenu.classList.add("flex");
+        if (mobileHomeIcon) mobileHomeIcon.style.transform = "rotate(180deg)";
       } else {
-          mobileHomeMenu.classList.add("hidden");
-          mobileHomeMenu.classList.remove("flex");
-          if (mobileHomeIcon) mobileHomeIcon.style.transform = "rotate(0deg)";
+        mobileHomeMenu.classList.add("hidden");
+        mobileHomeMenu.classList.remove("flex");
+        if (mobileHomeIcon) mobileHomeIcon.style.transform = "rotate(0deg)";
       }
     });
 
@@ -276,26 +281,26 @@
       e.preventDefault();
       const isHidden = mobileDashboardMenu.classList.contains("hidden");
       if (isHidden) {
-          mobileDashboardMenu.classList.remove("hidden");
-          mobileDashboardMenu.classList.add("flex");
-          if (mobileDashboardIcon) mobileDashboardIcon.style.transform = "rotate(180deg)";
+        mobileDashboardMenu.classList.remove("hidden");
+        mobileDashboardMenu.classList.add("flex");
+        if (mobileDashboardIcon) mobileDashboardIcon.style.transform = "rotate(180deg)";
       } else {
-          mobileDashboardMenu.classList.add("hidden");
-          mobileDashboardMenu.classList.remove("flex");
-          if (mobileDashboardIcon) mobileDashboardIcon.style.transform = "rotate(0deg)";
+        mobileDashboardMenu.classList.add("hidden");
+        mobileDashboardMenu.classList.remove("flex");
+        if (mobileDashboardIcon) mobileDashboardIcon.style.transform = "rotate(0deg)";
       }
     });
 
     // Main Mobile Menu Overlay Toggle
     if (mobileBtn && mobileMenu) {
-        mobileBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            const isHidden = mobileMenu.classList.toggle("hidden");
-            document.body.classList.toggle("menu-open");
-            if (mobileIcon) {
-                mobileIcon.className = isHidden ? "fas fa-bars text-2xl pointer-events-none" : "fas fa-times text-2xl rotate-90 transition-transform pointer-events-none";
-            }
-        });
+      mobileBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isHidden = mobileMenu.classList.toggle("hidden");
+        document.body.classList.toggle("menu-open");
+        if (mobileIcon) {
+          mobileIcon.className = isHidden ? "fas fa-bars text-2xl pointer-events-none" : "fas fa-times text-2xl rotate-90 transition-transform pointer-events-none";
+        }
+      });
     }
 
     // Theme Logic
@@ -304,8 +309,8 @@
       const iconClass = isDark ? "fas fa-sun" : "fas fa-moon";
       const darkIcon = document.getElementById("darkIcon");
       const mobileDarkIcon = document.getElementById("mobileDarkIcon");
-      if(darkIcon) darkIcon.className = iconClass + " pointer-events-none";
-      if(mobileDarkIcon) mobileDarkIcon.className = iconClass + " text-xl pointer-events-none";
+      if (darkIcon) darkIcon.className = iconClass + " pointer-events-none";
+      if (mobileDarkIcon) mobileDarkIcon.className = iconClass + " text-xl pointer-events-none";
     };
 
     themeToggles.forEach(btn => btn?.addEventListener("click", (e) => {

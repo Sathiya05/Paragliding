@@ -58,6 +58,10 @@
 
         .bg-radial-gradient { background: radial-gradient(circle at center, var(--tw-gradient-from), var(--tw-gradient-to)); }
     </style>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
 
 <body class="bg-lightbg dark:bg-darkbg text-black dark:text-white transition-colors duration-300 antialiased">
@@ -149,7 +153,7 @@
                 </div>
                 
                 <!-- Responsive Tabs -->
-                <div class="flex items-center gap-2 p-1.5 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-100 dark:border-gray-900 overflow-x-auto no-scrollbar whitespace-nowrap" id="briefingTabs">
+                <div class="flex items-center gap-2 p-1.5 bg-gray-50 dark:bg-[#111] rounded-2xl border border-gray-100 dark:border-gray-900 overflow-x-auto no-scrollbar whitespace-nowrap w-full lg:w-auto" id="briefingTabs">
                     <button data-category="all" class="briefing-tab px-8 py-2.5 rounded-xl bg-brand text-white text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-brand/20 transition-all active">All Logs</button>
                     <button data-category="Flight Theory" class="briefing-tab px-8 py-2.5 rounded-xl text-gray-400 hover:text-brand hover:bg-white dark:hover:bg-black transition-all text-[10px] font-bold uppercase tracking-widest">Safety</button>
                     <button data-category="Destinations" class="briefing-tab px-8 py-2.5 rounded-xl text-gray-400 hover:text-brand hover:bg-white dark:hover:bg-black transition-all text-[10px] font-bold uppercase tracking-widest">Destinations</button>
@@ -159,7 +163,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
                 
-                <article data-category="Flight Theory" class="blog-card flex flex-col bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10">
+                <article data-category="Flight Theory" class="blog-card flex flex-col h-full bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10">
                     <div class="h-72 overflow-hidden relative">
                         <img src="images\Staying Aloft Longer.webp" 
                              alt="Thermal Flying" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
@@ -179,7 +183,7 @@
                     </div>
                 </article>
 
-                <article data-category="Destinations" class="blog-card flex flex-col bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10 lg:mt-12">
+                <article data-category="Destinations" class="blog-card flex flex-col h-full bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10">
                     <div class="h-72 overflow-hidden relative">
                         <img src="images\img16.avif" 
                              alt="Swiss Alps" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
@@ -189,9 +193,9 @@
                     <div class="p-10 flex-1 flex flex-col">
                         <div class="flex items-center gap-3 mb-6">
                             <span class="w-8 h-[1px] bg-brand"></span>
-                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">April 28, 2026 • 8 Min</p>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">April 8, 2026 • </p>
                         </div>
-                        <h3 class="text-2xl font-semibold mb-5 leading-tight group-hover:text-brand transition-colors tracking-tight">Top 5 Alpine Launch Sites for Summer</h3>
+                        <h3 class="text-2xl font-semibold mb-5 leading-tight group-hover:text-brand transition-colors tracking-tight">Top 5 Alpine Launch Sites for Summer Month</h3>
                         <p class="text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-8 flex-1">Our pilots rank the most breathtaking summits in Switzerland and Austria for your next tandem adventure.</p>
                         <a href="flights.html" class="inline-flex items-center gap-3 text-brand font-bold text-[10px] uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
                             Explore Log <i class="fas fa-chevron-right text-[8px]"></i>
@@ -199,7 +203,7 @@
                     </div>
                 </article>
 
-                <article data-category="Safety Protocol" class="blog-card flex flex-col bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10 lg:mt-24">
+                <article data-category="Safety Protocol" class="blog-card flex flex-col h-full bg-gray-50 dark:bg-[#0a0a0a] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-gray-900 transition-all duration-500 group hover:shadow-2xl hover:shadow-brand/10">
                     <div class="h-72 overflow-hidden relative">
                         <img src="images\Checklist Every Pilot Needs.webp" 
                              alt="Paragliding Safety" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
@@ -209,10 +213,10 @@
                     <div class="p-10 flex-1 flex flex-col">
                         <div class="flex items-center gap-3 mb-6">
                             <span class="w-8 h-[1px] bg-brand"></span>
-                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">April 15, 2026 • 10 Min</p>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">April 15, 2026 • </p>
                         </div>
                         <h3 class="text-2xl font-semibold mb-5 leading-tight group-hover:text-brand transition-colors tracking-tight">The Pre-Flight Checklist Every Pilot Needs</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-8 flex-1">Safety is non-negotiable. We break down the 12-point inspection every AeroGlide pilot performs.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-8 flex-1">Safety is non-negotiable. We break down the 12-point inspection every AeroGlide pilot .</p>
                         <a href="flights.html" class="inline-flex items-center gap-3 text-brand font-bold text-[10px] uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
                             Explore Log <i class="fas fa-chevron-right text-[8px]"></i>
                         </a>
@@ -279,7 +283,7 @@
                     <div class="absolute -inset-0.5 bg-gradient-to-br from-brand/50 to-transparent rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                     <div class="relative p-10 bg-[#0a0a0a] rounded-[2.5rem] border border-white/5 h-full flex flex-col hover:border-brand/30 transition-colors duration-500">
                         <span class="text-5xl font-semibold text-white group-hover:text-brand/20 transition-colors mb-6  leading-none">1980s</span>
-                        <h4 class="text-xl font-semibold text-white mb-4 uppercase tracking-tight">The Pioneer Era</h4>
+                        <h4 class="text-xl font-semibold text-white mb-4 uppercase tracking-tight">The Pioneer Year Era</h4>
                         <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">Standard triangular frames and heavy dacron sails defined the early days of tandem soaring and experimental flight.</p>
                         <div class="mt-8 pt-8 border-t border-white/5 flex items-center gap-2 text-brand text-[10px] font-bold uppercase tracking-widest">
                             <i class="fas fa-history"></i> Legacy Build
