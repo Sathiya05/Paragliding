@@ -68,7 +68,7 @@
                   <div class="absolute inset-0 bg-[#3A86FF] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out z-0"></div>
               </a>
                 <a href="signup.html" class="relative px-6 py-2.5 bg-[#3A86FF] text-white rounded-lg font-bold text-[13px] uppercase tracking-wider overflow-hidden group shadow-md hover:shadow-[0_0_20px_rgba(0,0,0,0.4)] dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 hover:-translate-y-0.5">
-                  <span class="relative z-10 group-hover:text-black transition-colors duration-300 flex items-center gap-2">Sign Up</span>
+                  <span class="relative z-10 group-hover:text-white dark:group-hover:text-black transition-colors duration-300 flex items-center gap-2">Sign Up</span>
                   <div class="absolute inset-0 bg-black dark:bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out z-0"></div>
               </a>
           </div>

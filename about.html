@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -11,8 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="tailwind.js"></script>
-                  <link rel="icon" href="images\logo.png">
-
+    <link rel="icon" href="images\logo.png">
 
     <script>
         tailwind.config = {
@@ -88,7 +87,6 @@
         /* ─── PING RINGS ─── */
         @keyframes pingRing { 0%{transform:scale(1);opacity:.8} 100%{transform:scale(2.5);opacity:0} }
         .ping-ring { animation:pingRing 2s cubic-bezier(0,0,.2,1) infinite; }
-
 
         /* ─── MARQUEE ─── */
         @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
@@ -169,17 +167,14 @@
 
 <body class="bg-lightbg dark:bg-darkbg text-black dark:text-white transition-colors duration-300 antialiased selection:bg-brand selection:text-white">
 
-
 <section class="relative min-h-screen flex items-end pb-0 overflow-hidden bg-black">
 
-    <!-- Animated Wind Lines -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none z-10">
         <div class="wind-line" style="top:25%;width:90px;animation-delay:0s;"></div>
         <div class="wind-line" style="top:48%;width:140px;animation-delay:1.4s;"></div>
         <div class="wind-line" style="top:72%;width:65px;animation-delay:2.8s;"></div>
     </div>
 
-    <!-- Background Image -->
     <div class="absolute inset-0">
         <img src="images\bg2.avif"
              alt="Mountain aerial view" class="w-full h-full object-cover ">
@@ -187,12 +182,8 @@
         <div class="absolute inset-0 bg-black/40"></div>
     </div>
 
-   
-
-    <!-- Hero Content -->
     <div class="relative z-20 container mx-auto px-6 md:px-16 lg:px-24 pb-32 pt-44">
 
-        <!-- Breadcrumb -->
         <div class="flex items-center gap-3 mb-10">
             <div class="w-8 h-[2px] bg-brand"></div>
             <span class="text-[10px] font-semibold uppercase tracking-[.28em] text-brand">About AeroGlide</span>
@@ -200,7 +191,6 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
 
-            <!-- Left: Giant Headline -->
             <div class="lg:col-span-7">
                 <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold uppercase leading-[0.92] tracking-tighter text-white mb-0">
                     Born From<br>
@@ -213,7 +203,6 @@
                 </h1>
             </div>
 
-            <!-- Right: Intro Text -->
             <div class="lg:col-span-5 lg:pb-3">
                 <p class="text-sm md:text-base text-white/60 font-normal leading-relaxed mb-8 max-w-sm">
                     Since 2009, AeroGlide has been turning ordinary days into extraordinary sky stories. We are more than a flight company — we are a community of sky lovers, daring dreamers, and safety-first professionals.
@@ -224,7 +213,6 @@
             </div>
         </div>
 
-        <!-- Stat Strip -->
         <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-0 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-sm">
             <div class="stat-item p-6 bg-white/5 border-r border-white/10 text-center hover:bg-brand/20 transition-colors duration-300 cursor-default">
                 <div class="text-3xl md:text-4xl font-semibold text-white mb-1">2009<span class="text-brand text-2xl"></span></div>
@@ -246,26 +234,18 @@
     </div>
 </section>
 
-
-
-<!-- ═══════════════════════════════════════════════
-     OUR STORY — DIAGONAL SPLIT
-══════════════════════════════════════════════════ -->
 <section id="story" class="py-32 bg-lightbg dark:bg-darkbg overflow-hidden">
     <div class="container mx-auto px-6 md:px-16 lg:px-24">
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-center">
 
-            <!-- Left: Image Stack -->
             <div class="reveal-left relative">
-                <!-- Main Image -->
                 <div class="img-wrap rounded-3xl overflow-hidden h-[420px] md:h-[520px] border border-gray-100 dark:border-gray-800 shadow-2xl">
                     <img src="images\img17.avif"
                          alt="Paragliding over valley" class="w-full h-full object-cover">
                     <div class="img-overlay"></div>
                 </div>
 
-                <!-- Overlap Card -->
                 <div class="float-anim absolute -bottom-8 -right-4 md:-right-10 z-20 bg-white dark:bg-[#111] rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,.12)] border border-gray-100 dark:border-gray-800 min-w-[200px]">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center text-brand text-lg">
@@ -282,11 +262,9 @@
                     <p class="text-[10px] text-gray-500 mt-2 font-normal">TripAdvisor · Google · Yelp</p>
                 </div>
 
-                <!-- Corner Brackets -->
                 <div class="absolute -top-4 -left-4 w-12 h-12 border-t-4 border-l-4 border-brand rounded-tl-lg z-10 pointer-events-none"></div>
             </div>
 
-            <!-- Right: Story Text -->
             <div class="reveal-right">
                 <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-5">Our Origin</span>
                 <h2 class="text-4xl md:text-5xl font-semibold uppercase tracking-tighter text-black dark:text-white leading-[0.95] mb-8">
@@ -305,7 +283,6 @@
                     </p>
                 </div>
 
-                <!-- Signature -->
                 <div class="mt-10 flex items-center gap-5 pt-8 border-t border-gray-100 dark:border-gray-800">
                     <div>
                         <div class="text-2xl italic font-semibold text-black dark:text-white tracking-tight" style="font-family:'Georgia',serif">Marco & Lena</div>
@@ -318,12 +295,6 @@
     </div>
 </section>
 
-
-
-
-<!-- ═══════════════════════════════════════════════
-     MILESTONES — VERTICAL TIMELINE
-══════════════════════════════════════════════════ -->
 <section id="milestones" class="py-32 bg-gray-50 dark:bg-[#0c0c0c] overflow-hidden">
     <div class="container mx-auto px-6 md:px-16 lg:px-24">
 
@@ -334,15 +305,11 @@
             </h2>
         </div>
 
-        <!-- Timeline -->
         <div class="relative max-w-4xl mx-auto">
-            <!-- Vertical Line -->
             <div class="tl-line hidden lg:block"></div>
 
-            <!-- Items -->
             <div class="space-y-0">
 
-                <!-- 2009 -->
                 <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
                     <div class="lg:pr-16 lg:text-right pb-12 lg:pb-16 pl-12 lg:pl-0">
                         <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-brand text-white text-[10px] font-semibold uppercase tracking-widest">
@@ -351,14 +318,11 @@
                         <h3 class="text-xl font-semibold uppercase tracking-tight text-black dark:text-white mb-3">The First Flight</h3>
                         <p class="text-xs text-gray-500 dark:text-gray-400 font-normal leading-relaxed">Marco and Lena launch AeroGlide from a rented hangar in Interlaken. First season ends with 47 tandem flights and a 5-star average.</p>
                     </div>
-                    <!-- Center Dot -->
                     <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-brand border-4 border-white dark:border-[#0c0c0c] shadow-[0_0_15px_rgba(58,134,255,.5)] z-10 top-1/2 -translate-y-1/2 items-center justify-center"></div>
-                    <!-- Mobile Dot -->
                     <div class="lg:hidden absolute left-0 top-2 w-5 h-5 rounded-full bg-brand border-4 border-gray-50 dark:border-[#0c0c0c] shadow-[0_0_12px_rgba(58,134,255,.5)] z-10"></div>
                     <div class="hidden lg:block lg:pl-16 pb-12 lg:pb-16"></div>
                 </div>
 
-                <!-- 2012 -->
                 <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.1s">
                     <div class="hidden lg:block lg:pr-16 pb-16"></div>
                     <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0c0c0c] border-4 border-brand shadow-[0_0_15px_rgba(58,134,255,.3)] z-10 top-1/2 -translate-y-1/2 items-center justify-center"></div>
@@ -372,7 +336,6 @@
                     </div>
                 </div>
 
-                <!-- 2015 -->
                 <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.15s">
                     <div class="lg:pr-16 lg:text-right pb-12 lg:pb-16 pl-12 lg:pl-0">
                         <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-brand text-white text-[10px] font-semibold uppercase tracking-widest">
@@ -386,7 +349,6 @@
                     <div class="hidden lg:block lg:pl-16 pb-16"></div>
                 </div>
 
-                <!-- 2018 -->
                 <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.2s">
                     <div class="hidden lg:block lg:pr-16 pb-16"></div>
                     <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white dark:bg-[#0c0c0c] border-4 border-brand shadow-[0_0_15px_rgba(58,134,255,.3)] z-10 top-1/2 -translate-y-1/2 items-center justify-center"></div>
@@ -400,7 +362,6 @@
                     </div>
                 </div>
 
-                <!-- 2021 -->
                 <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.25s">
                     <div class="lg:pr-16 lg:text-right pb-12 lg:pb-16 pl-12 lg:pl-0">
                         <div class="rounded-xl inline-block mb-4 px-4 py-1.5 bg-brand text-white text-[10px] font-semibold uppercase tracking-widest">
@@ -414,7 +375,6 @@
                     <div class="hidden lg:block lg:pl-16 pb-16"></div>
                 </div>
 
-                <!-- 2024 -->
                 <div class="reveal relative grid grid-cols-1 lg:grid-cols-2 gap-0 items-center" style="animation-delay:.3s">
                     <div class="hidden lg:block lg:pr-16 pb-4"></div>
                     <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-brand border-4 border-white dark:border-[#0c0c0c] shadow-[0_0_25px_rgba(58,134,255,.8)] z-10 top-1/2 -translate-y-1/2 items-center justify-center">
@@ -435,10 +395,6 @@
     </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════
-     CORE VALUES — HEXAGONAL GRID FEEL
-══════════════════════════════════════════════════ -->
 <section id="values" class="py-32 bg-lightbg dark:bg-darkbg overflow-hidden">
     <div class="container mx-auto px-6 md:px-16 lg:px-24">
 
@@ -449,10 +405,8 @@
             </h2>
         </div>
 
-        <!-- Values in an asymmetric layout -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- Safety -->
             <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2">
                 <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
                     <i class="fas fa-shield-alt"></i>
@@ -464,7 +418,6 @@
                 </div>
             </div>
 
-            <!-- Passion — Featured Centre -->
             <div class="reveal group bg-brand rounded-3xl p-10 shadow-[0_20px_50px_rgba(58,134,255,.25)] hover:shadow-[0_30px_70px_rgba(58,134,255,.45)] transition-all duration-400 hover:-translate-y-3 lg:-translate-y-8" style="animation-delay:.1s">
                 <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-white text-2xl mb-8">
                     <i class="fas fa-heart"></i>
@@ -476,7 +429,6 @@
                 </div>
             </div>
 
-            <!-- Excellence -->
             <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2" style="animation-delay:.2s">
                 <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
                     <i class="fas fa-medal"></i>
@@ -488,7 +440,6 @@
                 </div>
             </div>
 
-            <!-- Community -->
             <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2 md:col-span-1" style="animation-delay:.1s">
                 <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
                     <i class="fas fa-users"></i>
@@ -500,7 +451,6 @@
                 </div>
             </div>
 
-            <!-- Transparency -->
             <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2" style="animation-delay:.2s">
                 <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
                     <i class="fas fa-eye"></i>
@@ -512,7 +462,6 @@
                 </div>
             </div>
 
-            <!-- Freedom -->
             <div class="reveal group bg-white dark:bg-[#111] rounded-3xl p-10 border border-gray-100 dark:border-gray-800 hover:border-brand/30 hover:shadow-xl dark:hover:shadow-brand/10 transition-all duration-400 hover:-translate-y-2" style="animation-delay:.3s">
                 <div class="icon-pulse w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand text-2xl mb-8 group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all duration-300">
                     <i class="fas fa-wind"></i>
@@ -528,10 +477,6 @@
     </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════
-     MEET THE PILOTS — HOVER REVEAL CARDS
-══════════════════════════════════════════════════ -->
 <section id="pilots" class="py-32 bg-[#080808] overflow-hidden">
 
     <div class="container mx-auto px-6 md:px-16 lg:px-24">
@@ -543,13 +488,10 @@
                     Meet The<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-cyan-400">Pilots</span>
                 </h2>
             </div>
-           
         </div>
 
-        <!-- Pilot Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            <!-- Pilot 1 -->
             <div class="reveal pilot-card group relative rounded-2xl overflow-hidden h-96 cursor-pointer border border-white/5 img-wrap">
                 <img src="images\pro1.avif"
                      alt="Marco Bauer" class="w-full h-full object-cover object-top">
@@ -568,7 +510,6 @@
                 </div>
             </div>
 
-            <!-- Pilot 2 -->
             <div class="reveal pilot-card group relative rounded-2xl overflow-hidden h-96 cursor-pointer border border-white/5 img-wrap lg:mt-10" style="animation-delay:.1s">
                 <img src="images\pro2.avif"
                      alt="Lena Richter" class="w-full h-full object-cover object-top">
@@ -586,7 +527,6 @@
                 </div>
             </div>
 
-            <!-- Pilot 3 -->
             <div class="reveal pilot-card group relative rounded-2xl overflow-hidden h-96 cursor-pointer border border-white/5 img-wrap" style="animation-delay:.2s">
                 <img src="images\pro3.avif"
                      alt="Stefan Kraus" class="w-full h-full object-cover object-top">
@@ -605,7 +545,6 @@
                 </div>
             </div>
 
-            <!-- Pilot 4 -->
             <div class="reveal pilot-card group relative rounded-2xl overflow-hidden h-96 cursor-pointer border border-white/5 img-wrap lg:mt-10" style="animation-delay:.3s">
                 <img src="images\pro4.avif"
                      alt="Camille Dupont" class="w-full h-full object-cover object-top">
@@ -626,7 +565,6 @@
 
         </div>
 
-        <!-- Pilot CTA -->
         <div class="reveal mt-14 text-center">
             <a href="blog.html" class="rounded-full inline-block px-10 py-4 border border-white/20 text-white text-xs font-semibold uppercase tracking-widest hover:bg-brand hover:border-brand transition-all duration-300">
                 <span class=" flex items-center gap-3">Meet The Full Team <i class="fas fa-arrow-right"></i></span>
@@ -636,7 +574,6 @@
     </div>
 </section>
 
-
 <section class="py-24 bg-lightbg dark:bg-darkbg border-t border-gray-100 dark:border-gray-900 overflow-hidden">
     <div class="container mx-auto px-6 md:px-16 lg:px-24 mb-12">
         <div class="reveal text-center">
@@ -645,7 +582,6 @@
         </div>
     </div>
 
-    <!-- Scrolling Cert Badges -->
     <div class="overflow-hidden ticker-wrap py-6 border-t border-b border-gray-100 dark:border-gray-900 bg-gray-50 dark:bg-[#0c0c0c]">
         <div class="ticker-track flex items-center gap-0 whitespace-nowrap" id="ticker-track" style="width:max-content">
             <div class="inline-flex items-center gap-4 px-12">
@@ -680,24 +616,17 @@
     </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════
-     CTA — SPLIT DARK BANNER
-══════════════════════════════════════════════════ -->
 <section class="relative py-32 bg-black overflow-hidden">
 
-    <!-- BG Image -->
     <div class="absolute inset-0">
         <img src="images\img5.avif"
              alt="Hang glider" class="w-full h-full object-cover ">
         <div class="absolute inset-0 bg-black/60"></div>
     </div>
 
-    
     <div class="relative z-10 container mx-auto px-6 md:px-16 lg:px-24">
         <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-            <!-- Left -->
             <div>
                 <span class="text-[10px] font-bold uppercase tracking-[.3em] text-brand block mb-6">Ready To Fly?</span>
                 <h2 class="text-5xl md:text-6xl lg:text-7xl font-semibold uppercase tracking-tighter text-white leading-[.9] mb-8">
@@ -706,7 +635,6 @@
                 </h2>
             </div>
 
-            <!-- Right -->
             <div class="flex flex-col gap-6">
                 <p class="text-base text-white/50 leading-relaxed font-normal max-w-sm">
                     Twelve thousand people have stood where you're standing now — wondering if they should. Every single one of them said yes. Every single one of them didn't regret it.
@@ -719,7 +647,6 @@
                         <span class="flex items-center gap-3"><i class="fas fa-phone text-brand group-hover:text-white transition-colors"></i> Call Us</span>
                     </a>
                 </div>
-                <!-- Trust micro-line -->
                 <p class="text-[10px] text-white/30 font-normal uppercase tracking-widest flex items-center gap-2">
                     <i class="fas fa-shield-alt text-brand"></i>
                     Free cancellation · No hidden fees · Instant confirmation
@@ -730,18 +657,15 @@
     </div>
 </section>
 
-
-
-
-<!-- ═══════════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════════════ -->
 <script>
     /* ─── DARK MODE ─── */
     (function(){
         const s = localStorage.getItem('theme');
-        if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))
+        if(s==='dark') {
             document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
     })();
     function toggleDark(){
         const d = document.documentElement.classList.toggle('dark');
@@ -757,7 +681,9 @@
 
     /* ─── STICKY NAV ─── */
     const nav = document.getElementById('site-nav');
-    window.addEventListener('scroll',()=> nav.classList.toggle('scrolled',scrollY>60));
+    window.addEventListener('scroll',()=> {
+        if(nav) nav.classList.toggle('scrolled',scrollY>60);
+    });
 
     /* ─── MARQUEE DUPLICATE ─── */
     (function(){
